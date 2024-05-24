@@ -26,8 +26,9 @@ const config: Config = {
         pulsate: "pulsate 2s ease-in-out infinite",
       },
       fontFamily: {
-        roboto: ["Roboto", "sans-serif"],
+        pacifico: ["Pacifico", "cursive"],
         montserrat: ["Montserrat", "sans-serif"],
+        macondo: ["Macondo", "cursive"],
       },
     },
   },

@@ -4,7 +4,7 @@ import loginLogo from "../../assets/Login/login-vector.png";
 import { SubmitHandler, useForm } from "react-hook-form";
 import Link from "next/link";
 import { FiHome } from "react-icons/fi";
-import { loginUser } from "@/utils/actions/login";
+import { loginUser } from "@/services/actions/login";
 import { useState } from "react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
