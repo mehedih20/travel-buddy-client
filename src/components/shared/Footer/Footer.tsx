@@ -1,14 +1,19 @@
 import Image from "next/image";
 import React from "react";
-import logo from "../../../assets/Homepage/logo.png";
+import logo from "../../../assets/Homepage/travel-logo.png";
 
 const Footer = () => {
   return (
     <footer className="footer p-10 text-base-content xl:container">
       <aside>
-        <Image src={logo} alt="logo" width={80} height={80} />
+        <div className="flex items-center">
+          <Image src={logo} alt="logo" width={80} height={80} />
+          <span className="text-2xl text-gray-700 font-pacifico">
+            Travel <span className="text-yellow-500">Buddy</span>
+          </span>
+        </div>
         <p>
-          Travel Buddies Ltd.
+          Travel Buddy Ltd.
           <br />
           Providing reliable service since 2018
         </p>

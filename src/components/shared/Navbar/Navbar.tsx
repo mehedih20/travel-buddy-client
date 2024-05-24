@@ -20,8 +20,8 @@ const Navbar = () => {
   );
   return (
     <>
-      <div className=" bg-purple-700">
-        <div className="flex xl:container justify-between text-white py-2">
+      <div className="bg-purple-800">
+        <div className="flex xl:container justify-between text-white p-2">
           <p className="flex items-center">
             <span className="mr-2">
               <IoMdMail className="text-red-400" />
@@ -73,6 +73,7 @@ const Navbar = () => {
                 <li>
                   <Link href="/travels">Travels</Link>
                 </li>
+                <ProfileLink />
               </ul>
             </div>
             <a className="btn btn-ghost h-fit flex">
