@@ -1,5 +1,6 @@
 import Image from "next/image";
 import img1 from "@/assets/Homepage/hero-vector.png";
+import Link from "next/link";
 
 const Hero = () => {
   return (
@@ -21,9 +22,12 @@ const Hero = () => {
               smart, travel together, and experience the world in a whole new
               way!
             </p>
-            <button className="btn mt-5 bg-orange-600 shadow-lg border-none text-white hover:text-black animate-pulsate px-10 text-lg font-macondo">
+            <Link
+              href="/trip-post"
+              className="btn mt-5 bg-orange-600 shadow-lg border-none text-white hover:text-black animate-pulsate px-10 text-lg font-macondo"
+            >
               Share Your Trip
-            </button>
+            </Link>
           </div>
         </div>
       </div>

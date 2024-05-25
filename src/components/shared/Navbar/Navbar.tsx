@@ -36,7 +36,7 @@ const Navbar = () => {
           </p>
         </div>
       </div>
-      <div className="bg-white">
+      <div className="bg-white drop-shadow-2xl">
         <div className="xl:container navbar min-h-fit">
           <div className="navbar-start">
             <div className="dropdown">

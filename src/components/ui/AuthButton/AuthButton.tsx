@@ -7,7 +7,6 @@ import React from "react";
 const AuthButton = () => {
   const userInfo = getUserInfo();
   const router = useRouter();
-  console.log(userInfo);
 
   const handleLogout = () => {
     removeUser();
