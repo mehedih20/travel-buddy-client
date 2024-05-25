@@ -1,6 +1,7 @@
 "use client";
 import Spinner from "@/components/ui/Spinner/Spinner";
 import Title from "@/components/ui/Title/Title";
+import { postTripDescription } from "@/constants/descriptions";
 import { useCreateTripMutation } from "@/redux/features/trips/tripsApi";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -15,9 +16,6 @@ interface IFormInput {
   endDate: string;
   budget: string;
 }
-
-const description: string =
-  "Design your dream vacation with our easy-to-use trip planner. Choose your destination, customize your itinerary, and select from a variety of activities and accommodations to match your interests and budget. Start planning today and turn your travel dreams into reality! ";
 
 const TripPost = () => {
   const {
@@ -53,7 +51,11 @@ const TripPost = () => {
 
   return (
     <div>
-      <Title title="Post a Trip" route="Trip Post" description={description} />
+      <Title
+        title="Post a Trip"
+        route="Trip Post"
+        description={postTripDescription}
+      />
       <div className=" bg-purple-800">
         <div className="xl:container min-h-screen p-5 py-10">
           <form

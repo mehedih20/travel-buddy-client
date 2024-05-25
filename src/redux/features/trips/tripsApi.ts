@@ -9,7 +9,24 @@ const tripsApi = baseApi.injectEndpoints({
         body: data,
       }),
     }),
+    getTrips: builder.query({
+      query: (queryObj: Record<string, any>) => {
+        let params: Record<string, any> = {};
+
+        Object.entries(queryObj).forEach(([key, value]) => {
+          if (value !== undefined && value !== "") {
+            params[key] = value;
+          }
+        });
+
+        return {
+          url: "/api/trips",
+          method: "GET",
+          params,
+        };
+      },
+    }),
   }),
 });
 
-export const { useCreateTripMutation } = tripsApi;
+export const { useCreateTripMutation, useGetTripsQuery } = tripsApi;

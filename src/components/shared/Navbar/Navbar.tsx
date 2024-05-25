@@ -76,7 +76,7 @@ const Navbar = () => {
                 <ProfileLink />
               </ul>
             </div>
-            <a className="btn btn-ghost h-fit flex">
+            <a className="btn btn-ghost h-fit flex xl:pl-0">
               <Image src={logo} alt="logo" width={70} height={70} />
               <span className="text-2xl text-gray-700 font-pacifico">
                 Travel <span className="text-yellow-500">Buddy</span>
