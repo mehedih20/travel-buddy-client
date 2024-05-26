@@ -11,6 +11,7 @@ interface IFormInput {
   description: string;
   travelType: string;
   activities: string;
+  itinerary: string;
   imageLinks: string;
   startDate: string;
   endDate: string;
@@ -27,13 +28,15 @@ const TripPost = () => {
   const [createTrip, { isLoading }] = useCreateTripMutation();
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
-    const activities = data.activities.split(",");
-    const imageLinks = data.imageLinks.split(",");
+    const activities = data.activities.split(/\s*,\s*/);
+    const imageLinks = data.imageLinks.split(/\s*,\s*/);
+    const itinerary = data.itinerary.split(/\s*,\s*/);
     const postData = {
       ...data,
       budget: Number(data.budget),
       activities,
       imageLinks,
+      itinerary,
     };
 
     try {
@@ -98,6 +101,7 @@ const TripPost = () => {
                 </span>
               )}
             </label>
+
             <label className="form-control w-full mb-5">
               <div className="label">
                 <span className="label-text">Travel Type</span>
@@ -118,7 +122,9 @@ const TripPost = () => {
             </label>
             <label className="form-control w-full mb-5">
               <div className="label">
-                <span className="label-text">Activities</span>
+                <span className="label-text">
+                  Activities (separated by comma)
+                </span>
               </div>
               <input
                 type="text"
@@ -136,7 +142,29 @@ const TripPost = () => {
             </label>
             <label className="form-control w-full mb-5">
               <div className="label">
-                <span className="label-text">Image links</span>
+                <span className="label-text">
+                  Itinerary (separated by comma)
+                </span>
+              </div>
+              <textarea
+                {...register("itinerary", {
+                  required: "Itinerary is required",
+                })}
+                className="textarea 
+                textarea-bordered h-24"
+                placeholder={`Day 1: Arrival and beach day,\nDay 2: Yoga retreat`}
+              ></textarea>
+              {errors.itinerary && (
+                <span className="ml-2 mt-2 text-sm text-red-500">
+                  {errors.itinerary.message}
+                </span>
+              )}
+            </label>
+            <label className="form-control w-full mb-5">
+              <div className="label">
+                <span className="label-text">
+                  Image links (separated by comma)
+                </span>
               </div>
               <input
                 type="text"

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { IoMdMail, IoMdCall } from "react-icons/io";
 import dynamic from "next/dynamic";
+import bgImg from "@/assets/Homepage/travelling-3.jpg";
 
 const Navbar = () => {
   const AuthButton = dynamic(
@@ -20,20 +21,29 @@ const Navbar = () => {
   );
   return (
     <>
-      <div className="bg-purple-800">
-        <div className="flex xl:container justify-between text-white p-2">
-          <p className="flex items-center">
-            <span className="mr-2">
-              <IoMdMail className="text-red-400" />
-            </span>
-            help@travelbuddy.com
-          </p>
-          <p className="flex items-center">
-            <span className="mr-2">
-              <IoMdCall className="text-yellow-400" />
-            </span>
-            +1 (0800) 123 456
-          </p>
+      <div className="relative h-[40px] overflow-hidden">
+        <div className="absolute top-0 left-0 h-full w-full">
+          <Image
+            src={bgImg}
+            alt="title-img"
+            className="absolute w-full top-0 left-0"
+          />
+        </div>
+        <div className=" bg-purple-950 opacity-80 w-full h-full text-white p-2 absolute top-0 left-0">
+          <div className="flex xl:container justify-between">
+            <p className="flex items-center">
+              <span className="mr-2">
+                <IoMdMail className="text-red-400" />
+              </span>
+              help@travelbuddy.com
+            </p>
+            <p className="flex items-center">
+              <span className="mr-2">
+                <IoMdCall className="text-yellow-400" />
+              </span>
+              +1 (0800) 123 456
+            </p>
+          </div>
         </div>
       </div>
       <div className="bg-white drop-shadow-2xl">

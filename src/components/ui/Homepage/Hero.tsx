@@ -1,11 +1,19 @@
 import Image from "next/image";
 import img1 from "@/assets/Homepage/hero-vector.png";
 import Link from "next/link";
+import bgImg from "@/assets/Homepage/travelling-3.jpg";
 
 const Hero = () => {
   return (
-    <div className="py-[100px] bg-purple-800">
-      <div className="hero">
+    <div className="relative overflow-hidden">
+      <div className="absolute top-0 left-0 h-full w-full">
+        <Image
+          src={bgImg}
+          alt="title-img"
+          className="absolute w-full top-0 left-0"
+        />
+      </div>
+      <div className="hero bg-purple-950 opacity-90 py-[100px]">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <Image src={img1} alt="hero-img" className="max-w-xl" />
           <div>

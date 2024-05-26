@@ -1,5 +1,6 @@
 export type TFormInput = {
   searchTerm: string;
+  travelType: string;
   startDate: string;
   endDate: string;
 };
@@ -9,8 +10,9 @@ export type TTrip = {
   userId: string;
   destination: string;
   description: string;
-  activities: string[];
   travelType: string;
+  activities: string[];
+  itinerary: string[];
   imageLinks: string[];
   startDate: string;
   endDate: string;

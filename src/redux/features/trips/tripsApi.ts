@@ -26,7 +26,24 @@ const tripsApi = baseApi.injectEndpoints({
         };
       },
     }),
+    getSingleTrip: builder.query({
+      query: (id) => ({
+        url: `/api/trips/${id}`,
+        method: "GET",
+      }),
+    }),
+    getTravelTypes: builder.query({
+      query: () => ({
+        url: "/api/travel-types",
+        method: "GET",
+      }),
+    }),
   }),
 });
 
-export const { useCreateTripMutation, useGetTripsQuery } = tripsApi;
+export const {
+  useCreateTripMutation,
+  useGetTripsQuery,
+  useGetSingleTripQuery,
+  useGetTravelTypesQuery,
+} = tripsApi;
