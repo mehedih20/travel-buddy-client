@@ -3,3 +3,6 @@ export const travelDescription: string =
 
 export const postTripDescription: string =
   "Design your dream vacation with our easy-to-use trip planner. Choose your destination, customize your itinerary, and select from a variety of activities and accommodations to match your interests and budget. Start planning today and turn your travel dreams into reality! ";
+
+export const postTravelDescription: string =
+  "Submit your travel preferences and let us create a personalized itinerary just for you. Whether you're dreaming of an adventurous escape, a relaxing getaway, or a culturally rich experience, our travel request form streamlines the planning process. By sharing your interests, budget, and travel details, you'll receive customized travel plans that cater to your unique desires. Start your journey to unforgettable experiences today with our expertly tailored travel recommendations, ensuring every moment of your trip is perfectly suited to your needs.";

@@ -4,6 +4,7 @@ import { useGetSingleTripQuery } from "@/redux/features/trips/tripsApi";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import Link from "next/link";
 
 type TParams = {
   params: {
@@ -34,13 +35,13 @@ const TravelDetailsPage = ({ params }: TParams) => {
   }, [value, totalImages]);
 
   return (
-    <div className=" bg-purple-800">
+    <div className="bg-purple-800">
       <Title
         title={travelDetails?.data?.destination}
         description={travelDetails?.data?.description}
         route={`travels/${travelDetails?.data?.id}`}
       />
-      <div className="xl:container px-2 grid grid-cols-[repeat(auto-fit,_minmax(500px,_1fr))] gap-10 py-[80px]">
+      <div className="xl:container px-2 grid grid-cols-[repeat(auto-fit,_minmax(500px,_1fr))] gap-10 pt-[80px] pb-[120px]">
         <div className=" bg-purple-950 rounded-xl shadow-lg h-[400px] w-full overflow-hidden flex flex-wrap relative">
           {travelDetails?.data?.imageLinks.map(
             (image: string, index: number) => {
@@ -125,9 +126,11 @@ const TravelDetailsPage = ({ params }: TParams) => {
               {travelDetails?.data?.budget}
             </p>
           </div>
-          <button className=" bg-yellow-300 text-gray-700 w-[300px] py-3 rounded-md mt-10 hover:bg-teal-900 hover:text-white transition-all duration-300 ease-in-out">
-            Make travel request
-          </button>
+          <Link href={`request/${travelDetails?.data?.id}`}>
+            <button className=" bg-yellow-300 text-gray-700 w-[300px] py-3 rounded-md mt-10 hover:bg-teal-900 hover:text-white transition-all duration-300 ease-in-out">
+              Make travel request
+            </button>
+          </Link>
         </div>
       </div>
     </div>

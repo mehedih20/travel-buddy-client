@@ -10,7 +10,9 @@ export const getUserInfo = () => {
 
   if (authToken) {
     const decodedInfo = jwtDecode(authToken);
-    return decodedInfo;
+    const userInfo = { ...decodedInfo };
+
+    return userInfo;
   } else {
     return "";
   }
