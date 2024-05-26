@@ -1,5 +1,5 @@
 "use client";
-import logo from "../../../assets/Homepage/travel-logo.png";
+import logo from "@/assets/Homepage/travel-logo.png";
 import Image from "next/image";
 import Link from "next/link";
 import { IoMdMail, IoMdCall } from "react-icons/io";

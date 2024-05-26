@@ -30,6 +30,9 @@ const config: Config = {
         montserrat: ["Montserrat", "sans-serif"],
         macondo: ["Macondo", "cursive"],
       },
+      minHeight: {
+        "screen-minus-logo": "calc(100vh - 80px)",
+      },
     },
   },
   plugins: [require("daisyui")],

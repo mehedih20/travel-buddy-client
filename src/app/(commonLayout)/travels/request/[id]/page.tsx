@@ -6,19 +6,10 @@ import { postTravelDescription } from "@/constants/descriptions";
 import { useSendTravelBuddyRequestMutation } from "@/redux/features/travelBuddy/travelBuddyApi";
 import { useGetSingleTripQuery } from "@/redux/features/trips/tripsApi";
 import { getUserInfo } from "@/services/auth.services";
+import { userPayload } from "@/types";
 import { useRef, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
-
-type userPayload = {
-  id: string;
-  name: string;
-  username: string;
-  email: string;
-  role: string;
-  iat: number;
-  exp: number;
-};
 
 type TFormInput = {
   userEmail: string;
