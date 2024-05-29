@@ -7,6 +7,7 @@ import { useState } from "react";
 import { TFormInput, TTrip } from "@/types/travelsTypes";
 import TravelsForm from "@/components/ui/TravelsForm/TravelsForm";
 import SingleTravel from "@/components/ui/SingleTravel/SingleTravel";
+import PlainLoading from "@/components/ui/Loading/PlainLoading";
 
 const Travels = () => {
   const [queryObj, setQueryObj] = useState({});
@@ -39,14 +40,21 @@ const Travels = () => {
           onSubmit={onSubmit}
           handleClear={handleClear}
         />
-        <h2 className="text-white text-2xl font-montserrat mt-16 bg-purple-950 py-2 px-5 inline-block rounded-md">
-          Total post found : {travelsData?.meta?.total}
-        </h2>
-        <div className="grid grid-cols-[repeat(auto-fit,_minmax(400px,_1fr))] gap-10 py-[80px]">
-          {travelsData?.data?.map((item: TTrip) => {
-            return <SingleTravel key={item.id} item={item} />;
-          })}
-        </div>
+        {isFetching ? (
+          <PlainLoading />
+        ) : (
+          <>
+            <h2 className="text-white text-2xl font-montserrat mt-16 bg-purple-950 py-2 px-5 inline-block rounded-md">
+              Total post found : {travelsData?.meta?.total}
+            </h2>
+            <div className="grid grid-cols-[repeat(auto-fit,_minmax(400px,_1fr))] gap-10 py-[80px]">
+              {travelsData?.data?.map((item: TTrip) => {
+                return <SingleTravel key={item.id} item={item} />;
+              })}
+            </div>
+          </>
+        )}
+
         <div className="text-center mb-20">
           <div className=" flex gap-2 flex-wrap justify-center">
             {travelsData?.meta &&
@@ -60,7 +68,7 @@ const Travels = () => {
                       className={`w-10 h-10 rounded-xl ${
                         travelsData?.meta?.page === index + 1
                           ? "bg-yellow-400 cursor-not-allowed"
-                          : "bg-orange-700 hover:bg-violet-950 hover:text-white transition-all duration-300 ease-in-out"
+                          : "bg-white hover:bg-violet-950 hover:text-white transition-all duration-300 ease-in-out"
                       }`}
                     >
                       {index + 1}

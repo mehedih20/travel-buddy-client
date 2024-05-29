@@ -1,3 +1,6 @@
+export const aboutUsDescription: string =
+  "Welcome to Travel Buddy, your trusted partner for unforgettable journeys! At Travel Buddy, we believe that the best travel experiences are those shared with the right companions, and we are here to help you find them. Our platform is designed to connect travelers, inspire adventures, and ensure that your trips are as seamless and enjoyable as possible.";
+
 export const travelDescription: string =
   "Welcome to our Travel Explorer page! Discover a world of travel possibilities with our curated collection of dream vacations, exciting itineraries, and unique adventures. Whether you're planning a relaxing getaway, a thrilling expedition, or a cultural journey, find inspiration from travelers around the globe. Browse through diverse destinations, detailed trip descriptions, and a variety of activities to start planning your next unforgettable adventure today!";
 

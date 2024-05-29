@@ -13,7 +13,7 @@ const Hero = () => {
           className="absolute w-full top-0 left-0"
         />
       </div>
-      <div className="hero bg-purple-950 opacity-90 py-[100px]">
+      <div className="hero bg-purple-950 opacity-80 py-[100px]">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <Image src={img1} alt="hero-img" className="max-w-xl" />
           <div>
