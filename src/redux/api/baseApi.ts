@@ -2,8 +2,11 @@ import { authKey } from "@/constants/auth-key";
 import { getFromLocalStorage } from "@/utils/local-storage";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
+const apiUrl = "https://travel-buddies-seven.vercel.app";
+const localUrl = "http://localhost:5000";
+
 const baseQuery = fetchBaseQuery({
-  baseUrl: "http://localhost:5000",
+  baseUrl: apiUrl,
   prepareHeaders: (headers) => {
     const token = getFromLocalStorage(authKey);
     if (token) {

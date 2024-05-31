@@ -50,12 +50,7 @@ const LoginPage = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-purple-600 to-violet-950  flex justify-center items-center">
-      <div className="block p-3 absolute top-5 left-5 rounded-full shadow-md bg-violet-800">
-        <Link href="/">
-          <FiHome className="text-3xl text-white" />
-        </Link>
-      </div>
-      <div className="grid grid-cols-2 shadow-cyan-500/50 shadow-2xl rounded-3xl overflow-hidden">
+      <div className="grid md:grid-cols-2 shadow-cyan-500/50 shadow-2xl rounded-3xl overflow-hidden mx-4 my-10 md:my-4">
         <div className="pr-14 pl-5 py-20 bg-gradient-to-r from-purple-800 to-purple-900 flex items-center">
           <Image src={loginLogo} alt="login-img" width={350} height={350} />
         </div>
@@ -64,28 +59,28 @@ const LoginPage = () => {
             Welcome back
           </h2>
           <div className="py-[80px]">
-            <h2 className="text-center font-montserrat text-3xl mt-5">
+            <h2 className="text-center font-montserrat text-3xl mt-5 text-gray-700">
               Travel Buddy Login
             </h2>
             <form
               onSubmit={handleSubmit(onSubmit)}
-              className="flex flex-col p-10"
+              className="flex flex-col p-10 bg-slate-100"
             >
               <input
-                className="bg-transparent border-b-2 mb-8 w-[300px] place-content-center border-b-gray-300 font-montserrat placeholder-gray-500 outline-none"
+                className="bg-transparent border-b-2 mb-8 w-[270px] md:w-[300px] place-content-center border-b-gray-300 font-montserrat placeholder-gray-500 outline-none"
                 {...register("email")}
                 placeholder="Email"
               />
 
               <input
-                className="bg-transparent border-b-2 mb-8 w-[300px] place-content-center border-b-gray-300 font-montserrat placeholder-gray-500 outline-none"
+                className="bg-transparent border-b-2 mb-8 w-[270px] md:w-[300px] place-content-center border-b-gray-300 font-montserrat placeholder-gray-500 outline-none"
                 {...register("password")}
                 type="password"
                 placeholder="Password"
               />
 
               <button
-                className="bg-gradient-to-r from-purple-800 to-purple-900 py-3 pl-5 pr-10 rounded-3xl text-gray-200 tracking-wide outline-none hover:from-blue-800 hover:to-purple-950 transition-colors duration-700 ease-in-out flex justify-center"
+                className="bg-purple-800 hover:bg-violet-950 py-3 w-[270px] md:w-[300px] rounded-3xl text-gray-200 tracking-wide outline-none transition-all duration-700 ease-in-out flex justify-center"
                 type="submit"
               >
                 {loading && <Spinner />}

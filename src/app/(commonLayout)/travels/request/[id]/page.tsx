@@ -4,6 +4,7 @@ import Spinner from "@/components/ui/Spinner/Spinner";
 import TermsAndConditions from "@/components/ui/TermsAndConditions/TermsAndConditions";
 import Title from "@/components/ui/Title/Title";
 import { postTravelDescription } from "@/constants/descriptions";
+import UserRoute from "@/private/UserRoute";
 import { useSendTravelBuddyRequestMutation } from "@/redux/features/travelBuddy/travelBuddyApi";
 import { useGetSingleTripQuery } from "@/redux/features/trips/tripsApi";
 import { getUserInfo } from "@/services/auth.services";
@@ -40,7 +41,6 @@ const TravelRequestPage = ({ params }: TParams) => {
     };
     try {
       const result = await sendTravelBuddyRequest(travelRequestData).unwrap();
-      console.log(result);
 
       if (result?.success) {
         toast.success(result?.message);
@@ -63,7 +63,7 @@ const TravelRequestPage = ({ params }: TParams) => {
   };
 
   return (
-    <>
+    <UserRoute>
       {isFetching ? (
         <Loading />
       ) : (
@@ -201,7 +201,7 @@ const TravelRequestPage = ({ params }: TParams) => {
             id="my_modal_5"
             className="modal modal-bottom sm:modal-middle"
           >
-            <div className="modal-box">
+            <div className="modal-box p-5">
               <TermsAndConditions />
               <div className="modal-action">
                 <form method="dialog">
@@ -214,7 +214,7 @@ const TravelRequestPage = ({ params }: TParams) => {
           </dialog>
         </>
       )}
-    </>
+    </UserRoute>
   );
 };
 

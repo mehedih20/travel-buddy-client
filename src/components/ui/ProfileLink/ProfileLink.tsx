@@ -8,7 +8,7 @@ const ProfileLink = () => {
     <>
       {userInfo && (
         <li>
-          <Link href="/profile">My Profile</Link>
+          <Link href="/dashboard/profile">My Profile</Link>
         </li>
       )}
     </>

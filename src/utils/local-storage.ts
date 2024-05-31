@@ -1,3 +1,5 @@
+import { cookies } from "next/headers";
+
 export const getFromLocalStorage = (key: string) => {
   if (!key || typeof window === "undefined") {
     return "";

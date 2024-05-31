@@ -4,7 +4,7 @@ import bgImg from "@/assets/Homepage/travelling-1.jpg";
 
 const WhyUs = () => {
   return (
-    <ImageContainer backgroundImage={bgImg} opacity={90}>
+    <ImageContainer>
       <div className="xl:container">
         <div className="text-center">
           <h2 className=" text-4xl inline-block text-white font-montserrat pb-3 border-b-4 border-b-yellow-400 uppercase">
