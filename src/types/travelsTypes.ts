@@ -1,4 +1,4 @@
-export type TFormInput = {
+export type TTravelsFormInput = {
   searchTerm: string;
   travelType: string;
   startDate: string;

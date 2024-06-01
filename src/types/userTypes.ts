@@ -7,3 +7,17 @@ export type userPayload = {
   iat: number;
   exp: number;
 };
+
+export type TUserUpdateFormInput = {
+  name: string;
+  email: string;
+  username: string;
+  profile: {
+    age: number;
+    bio: string;
+  };
+};
+
+export type TUserPhotUpdateFormInput = {
+  photoUrl: string;
+};

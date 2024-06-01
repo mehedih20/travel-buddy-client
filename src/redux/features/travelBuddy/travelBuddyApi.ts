@@ -4,7 +4,7 @@ const tripsApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     sendTravelBuddyRequest: builder.mutation({
       query: (data) => ({
-        url: "/api/trip/request",
+        url: "/trip/request",
         method: "POST",
         body: data,
       }),

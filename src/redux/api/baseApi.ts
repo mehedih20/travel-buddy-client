@@ -2,8 +2,8 @@ import { authKey } from "@/constants/auth-key";
 import { getFromLocalStorage } from "@/utils/local-storage";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const apiUrl = "https://travel-buddies-seven.vercel.app";
-const localUrl = "http://localhost:5000";
+const apiUrl = "https://travel-buddies-seven.vercel.app/api";
+const localUrl = "http://localhost:5000/api";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: apiUrl,
@@ -20,6 +20,6 @@ const baseQuery = fetchBaseQuery({
 export const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery,
-  tagTypes: [],
+  tagTypes: ["user"],
   endpoints: () => ({}),
 });

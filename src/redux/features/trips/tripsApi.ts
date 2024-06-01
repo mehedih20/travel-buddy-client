@@ -4,7 +4,7 @@ const tripsApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     createTrip: builder.mutation({
       query: (data) => ({
-        url: "/api/trips",
+        url: "/trips",
         method: "POST",
         body: data,
       }),
@@ -20,7 +20,7 @@ const tripsApi = baseApi.injectEndpoints({
         });
 
         return {
-          url: "/api/trips",
+          url: "/trips",
           method: "GET",
           params,
         };
@@ -28,13 +28,13 @@ const tripsApi = baseApi.injectEndpoints({
     }),
     getSingleTrip: builder.query({
       query: (id) => ({
-        url: `/api/trips/${id}`,
+        url: `/trips/${id}`,
         method: "GET",
       }),
     }),
     getTravelTypes: builder.query({
       query: () => ({
-        url: "/api/travel-types",
+        url: "/travel-types",
         method: "GET",
       }),
     }),

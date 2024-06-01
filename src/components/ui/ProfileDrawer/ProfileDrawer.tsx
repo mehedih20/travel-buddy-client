@@ -34,8 +34,8 @@ const ProfileDrawer = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <div className="flex bg-violet-300 relative">
-      <div className="hidden bg-violet-950 lg:flex flex-col pb-5 min-w-[300px] m-0.5 mr-0 rounded-md">
+    <div className=" fixed left-0 top-0 h-full w-full flex bg-violet-300">
+      <div className="hidden bg-violet-950 border-r border-purple-800 lg:flex flex-col pb-5 min-w-[300px]">
         <div className="flex justify-center items-center mt-2">
           <Image src={logo} alt="logo" width={60} height={60} />
           <span className="text-2xl text-white font-pacifico">
@@ -64,7 +64,7 @@ const ProfileDrawer = ({ children }: { children: React.ReactNode }) => {
         </div>
       </div>
       <div className="min-h-screen flex-1 pb-2">
-        <div className="bg-violet-950 h-[80px] flex-1 lg:m-0.5 lg:rounded-lg flex justify-between items-center px-4">
+        <div className="bg-violet-950 h-[80px] flex-1 flex justify-between items-center px-4">
           <button
             onClick={handleOpenSideDrawer}
             className="lg:hidden p-3 font-semibold text-white  font-montserrat text-xl shadow-xl"
@@ -84,7 +84,9 @@ const ProfileDrawer = ({ children }: { children: React.ReactNode }) => {
             Logout
           </button>
         </div>
-        <div className="mx-1 mt-2 rounded-sm">{children}</div>
+        <div className="px-2 sm:px-8 py-[30px] h-[100vh] overflow-y-scroll flex-1 font-montserrat">
+          {children}
+        </div>
       </div>
       {/* Sidebar */}
       <div

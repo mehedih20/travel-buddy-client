@@ -1,19 +1,19 @@
 import React from "react";
-import Spinner from "../Spinner/Spinner";
 import { FaSearch, FaTrash } from "react-icons/fa";
 import {
   SubmitHandler,
   UseFormHandleSubmit,
   UseFormRegister,
 } from "react-hook-form";
-import { TFormInput } from "@/types/travelsTypes";
+import { TTravelsFormInput } from "@/types/travelsTypes";
 import { useGetTravelTypesQuery } from "@/redux/features/trips/tripsApi";
+import Spinner from "../../Spinner/Spinner";
 
 type TravelsFormProps = {
-  register: UseFormRegister<TFormInput>;
+  register: UseFormRegister<TTravelsFormInput>;
   isFetching: boolean;
-  handleSubmit: UseFormHandleSubmit<TFormInput, undefined>;
-  onSubmit: SubmitHandler<TFormInput>;
+  handleSubmit: UseFormHandleSubmit<TTravelsFormInput, undefined>;
+  onSubmit: SubmitHandler<TTravelsFormInput>;
   handleClear: () => void;
 };
 

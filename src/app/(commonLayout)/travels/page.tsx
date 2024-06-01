@@ -4,19 +4,19 @@ import { travelDescription } from "@/constants/descriptions";
 import { useGetTripsQuery } from "@/redux/features/trips/tripsApi";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useState } from "react";
-import { TFormInput, TTrip } from "@/types/travelsTypes";
-import TravelsForm from "@/components/ui/TravelsForm/TravelsForm";
+import { TTravelsFormInput, TTrip } from "@/types/travelsTypes";
 import SingleTravel from "@/components/ui/SingleTravel/SingleTravel";
 import PlainLoading from "@/components/ui/Loading/PlainLoading";
+import TravelsForm from "@/components/ui/Forms/TravelsForm/TravelsForm";
 
 const Travels = () => {
   const [queryObj, setQueryObj] = useState({});
   const { data: travelsData, isFetching } = useGetTripsQuery(queryObj);
-  const { register, handleSubmit, reset } = useForm<TFormInput>();
+  const { register, handleSubmit, reset } = useForm<TTravelsFormInput>();
 
   const pages = Math.ceil(travelsData?.meta?.total / travelsData?.meta?.limit);
 
-  const onSubmit: SubmitHandler<TFormInput> = async (data) => {
+  const onSubmit: SubmitHandler<TTravelsFormInput> = async (data) => {
     setQueryObj(data);
   };
 
