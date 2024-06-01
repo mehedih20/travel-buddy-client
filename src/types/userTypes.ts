@@ -21,3 +21,9 @@ export type TUserUpdateFormInput = {
 export type TUserPhotUpdateFormInput = {
   photoUrl: string;
 };
+
+export type TUserChangePasswordFormInput = {
+  oldPassword: string;
+  newPassword: string;
+  confirmNewPassword: string;
+};

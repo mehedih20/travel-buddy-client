@@ -6,13 +6,12 @@ import {
   useGetUserProfileQuery,
   useUpdateUserProfileMutation,
 } from "@/redux/features/user/userApi";
-import { TUserPhotUpdateFormInput, TUserUpdateFormInput } from "@/types";
+import { TUserUpdateFormInput } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { FaCheck, FaCross, FaKey, FaPen } from "react-icons/fa";
-import { FaX } from "react-icons/fa6";
+import { FaKey, FaPen } from "react-icons/fa";
 import { toast } from "sonner";
 
 const ProfilePage = () => {
@@ -46,7 +45,7 @@ const ProfilePage = () => {
 
   return (
     <div className="mb-[100px]">
-      <h1 className="font-semibold uppercase  inline-block text-3xl text-violet-950 mb-14">
+      <h1 className="font-semibold  inline-block text-3xl text-violet-950 mb-14">
         Profile
       </h1>
 
@@ -138,12 +137,14 @@ const ProfilePage = () => {
                 </p>
               </div>
               <div className="lg:flex gap-2">
-                <button
-                  onClick={() => setIsProfileEditing(true)}
-                  className="flex items-center mt-5 py-2 w-[200px] justify-center rounded-full bg-purple-800 text-white text-sm hover:bg-blue-900 duration-300 ease-in-out"
-                >
-                  <FaPen className="mr-2" /> Edit Profile
-                </button>
+                {!isPhotoEditing && (
+                  <button
+                    onClick={() => setIsProfileEditing(true)}
+                    className="flex items-center mt-5 py-2 w-[200px] justify-center rounded-full bg-purple-800 text-white text-sm hover:bg-blue-900 duration-300 ease-in-out"
+                  >
+                    <FaPen className="mr-2" /> Edit Profile
+                  </button>
+                )}
                 <Link
                   href="/dashboard/change-password"
                   className="flex items-center mt-5 py-2 w-[200px] justify-center rounded-full bg-purple-800 text-white text-sm hover:bg-blue-900 duration-300 ease-in-out"
