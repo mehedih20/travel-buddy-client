@@ -4,7 +4,7 @@ import logo from "../../../assets/Homepage/travel-logo.png";
 
 const Footer = () => {
   return (
-    <footer className="footer p-10 text-base-content xl:container">
+    <footer className="footer p-10 text-base-content bg-white xl:container">
       <aside>
         <div className="flex items-center">
           <Image src={logo} alt="logo" width={80} height={80} />

@@ -4,7 +4,6 @@ import {
   removeFromLocalStorage,
 } from "@/utils/local-storage";
 import { jwtDecode } from "jwt-decode";
-import { deleteCookies } from "./actions/deleteCookies";
 
 export const getUserInfo = () => {
   const authToken = getFromLocalStorage(authKey);
@@ -20,8 +19,7 @@ export const getUserInfo = () => {
 };
 
 export const removeUser = () => {
-  removeFromLocalStorage(authKey);
-  deleteCookies(authKey);
+  return removeFromLocalStorage(authKey);
 };
 
 export const isLoggedIn = () => {

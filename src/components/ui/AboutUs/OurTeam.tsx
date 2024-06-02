@@ -61,7 +61,7 @@ const OurTeam = () => {
   }, [value]);
 
   return (
-    <div className="max-w-[1200px] mx-auto py-[100px] px-4 mb-10">
+    <div className="max-w-[1200px] mx-auto py-[100px] px-4 mb-10 bg-white">
       <div className="text-center mb-12">
         <h1 className=" font-montserrat inline-block text-4xl uppercase border-b-4 border-b-yellow-400 pb-3">
           Meet Our Team

@@ -35,7 +35,7 @@ const userApi = baseApi.injectEndpoints({
     checkUserPassword: builder.mutation({
       query: (data) => ({
         url: "/check-password",
-        method: "PUT",
+        method: "POST",
         body: data,
       }),
     }),

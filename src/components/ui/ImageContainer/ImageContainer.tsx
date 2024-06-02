@@ -7,18 +7,9 @@ type ContainerProps = {
 
 const ImageContainer = ({ children }: ContainerProps) => {
   return (
-    <div className="relative border overflow-hidden">
-      <Image
-        src={backgroundImage}
-        width={1400}
-        alt="background-img"
-        className="absolute top-0 left-0 w-full h-full -z-20"
-      />
-      <div
-        className={`absolute -z-10 top-0 left-0 w-full h-full bg-purple-950 opacity-90`}
-      ></div>
-
-      <div className="w-full h-full relative z-10 py-[100px] px-4">
+    <div className="bg-[url('/bg-image.jpg')] bg-cover bg-center relative border overflow-hidden">
+      <div className="absolute top-0 left-0 h-full w-full z-10 bg-purple-950 opacity-90"></div>
+      <div className="w-full h-full relative z-30 py-[100px] px-4">
         {children}
       </div>
     </div>

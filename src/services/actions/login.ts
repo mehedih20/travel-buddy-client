@@ -1,10 +1,7 @@
 "use server";
 
-import { authKey } from "@/constants/auth-key";
-import { cookies } from "next/headers";
-
 export const loginUser = async (data: any) => {
-  const res = await fetch(`${process.env.BACKEND_URL}/login`, {
+  const res = await fetch(`${process.env.BACKEND_URL}/api/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -14,6 +11,5 @@ export const loginUser = async (data: any) => {
   });
 
   const userInfo = await res.json();
-  if (userInfo.data.token) cookies().set(authKey, userInfo.data.token);
   return userInfo;
 };

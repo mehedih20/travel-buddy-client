@@ -44,7 +44,7 @@ const ProfilePage = () => {
   };
 
   return (
-    <div className="mb-[100px]">
+    <div className="pb-[150px] px-2">
       <h1 className="font-semibold  inline-block text-3xl text-violet-950 mb-14">
         Profile
       </h1>

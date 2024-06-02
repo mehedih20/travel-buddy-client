@@ -7,9 +7,20 @@ const ProfileLink = () => {
   return (
     <>
       {userInfo && (
-        <li>
-          <Link href="/dashboard/profile">My Profile</Link>
-        </li>
+        <>
+          <Link
+            className="hover:bg-purple-200 py-1 px-2 duration-500 ease-in-out"
+            href="/dashboard/profile"
+          >
+            Profile
+          </Link>
+          <Link
+            className="hover:bg-purple-200 py-1 px-2 duration-500 ease-in-out"
+            href="/dashboard"
+          >
+            Dashboard
+          </Link>
+        </>
       )}
     </>
   );

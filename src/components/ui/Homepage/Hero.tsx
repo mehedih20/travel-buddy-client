@@ -1,23 +1,15 @@
 import Image from "next/image";
 import img1 from "@/assets/Homepage/hero-vector.png";
 import Link from "next/link";
-import bgImg from "@/assets/Homepage/travelling-3.jpg";
 
 const Hero = () => {
   return (
-    <div className="relative overflow-hidden">
-      <div className="absolute top-0 left-0 h-full w-full">
-        <Image
-          src={bgImg}
-          alt="title-img"
-          className="absolute w-full top-0 left-0"
-        />
-      </div>
-      <div className="hero bg-purple-950 opacity-80 py-[100px]">
+    <div className="overflow-hidden bg-[url('/bg-image.jpg')] bg-cover bg-center">
+      <div className="hero bg-purple-950 opacity-80 pt-[50px] pb-[100px] lg:pt-[100px]">
         <div className="hero-content flex-col lg:flex-row-reverse">
-          <Image src={img1} alt="hero-img" className="max-w-xl" />
+          <Image src={img1} alt="hero-img" width={500} height={500} />
           <div>
-            <h1 className="mb-10 text-5xl max-w-2xl font-montserrat text-white  font-bold">
+            <h1 className="mb-10 text-4xl xl:text-5xl max-w-2xl font-montserrat text-white  font-bold">
               Travel Smart, Travel Together: Meet Your New Best Friend!
             </h1>
             <p className="mb-10 text-lg text-gray-300">

@@ -3,7 +3,6 @@ import Image from "next/image";
 import loginLogo from "../../assets/Login/login-vector.png";
 import { SubmitHandler, useForm } from "react-hook-form";
 import Link from "next/link";
-import { FiHome } from "react-icons/fi";
 import { loginUser } from "@/services/actions/login";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -44,6 +43,7 @@ const LoginPage = () => {
       }
     } catch (err) {
       console.log(err);
+      toast.error("Something went wrong");
       setLoading(false);
     }
   };
@@ -67,13 +67,13 @@ const LoginPage = () => {
               className="flex flex-col p-10 bg-slate-100"
             >
               <input
-                className="bg-transparent border-b-2 mb-8 w-[270px] md:w-[300px] place-content-center border-b-gray-300 font-montserrat placeholder-gray-500 outline-none"
+                className="bg-transparent border-b-2 mb-8 w-[270px] md:w-[300px] place-content-center text-black border-b-gray-300 font-montserrat placeholder-gray-500 outline-none"
                 {...register("email")}
                 placeholder="Email"
               />
 
               <input
-                className="bg-transparent border-b-2 mb-8 w-[270px] md:w-[300px] place-content-center border-b-gray-300 font-montserrat placeholder-gray-500 outline-none"
+                className="bg-transparent border-b-2 mb-8 w-[270px] md:w-[300px] place-content-center text-black border-b-gray-300 font-montserrat placeholder-gray-500 outline-none"
                 {...register("password")}
                 type="password"
                 placeholder="Password"

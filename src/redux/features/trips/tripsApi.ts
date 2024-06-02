@@ -1,4 +1,5 @@
 import { baseApi } from "@/redux/api/baseApi";
+import { TUpdateTrip } from "@/types";
 
 const tripsApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -32,10 +33,33 @@ const tripsApi = baseApi.injectEndpoints({
         method: "GET",
       }),
     }),
+    getSingleUserTrips: builder.query({
+      query: () => ({
+        url: "/user/trips",
+        method: "GET",
+      }),
+    }),
     getTravelTypes: builder.query({
       query: () => ({
         url: "/travel-types",
         method: "GET",
+      }),
+    }),
+    updateTrip: builder.mutation({
+      query: (data: TUpdateTrip) => {
+        const { tripId, ...remaingData } = data;
+
+        return {
+          url: `/update-trip/${tripId}`,
+          method: "PUT",
+          body: remaingData,
+        };
+      },
+    }),
+    deleteTrip: builder.mutation({
+      query: (tripId) => ({
+        url: `/delete-trip/${tripId}`,
+        method: "DELETE",
       }),
     }),
   }),
@@ -46,4 +70,7 @@ export const {
   useGetTripsQuery,
   useGetSingleTripQuery,
   useGetTravelTypesQuery,
+  useGetSingleUserTripsQuery,
+  useUpdateTripMutation,
+  useDeleteTripMutation,
 } = tripsApi;

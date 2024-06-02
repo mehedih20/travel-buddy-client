@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <Providers>
       <html lang="en">
-        <body className={inter.className}>
+        <body className="font-montserrat text-gray-800">
           {children}
           <Toaster position="top-center" />
           <BackButton />

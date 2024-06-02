@@ -4,14 +4,16 @@ import Spinner from "@/components/ui/Spinner/Spinner";
 import TermsAndConditions from "@/components/ui/TermsAndConditions/TermsAndConditions";
 import Title from "@/components/ui/Title/Title";
 import { postTravelDescription } from "@/constants/descriptions";
-import UserRoute from "@/private/UserRoute";
-import { useSendTravelBuddyRequestMutation } from "@/redux/features/travelBuddy/travelBuddyApi";
 import { useGetSingleTripQuery } from "@/redux/features/trips/tripsApi";
 import { getUserInfo } from "@/services/auth.services";
 import { userPayload } from "@/types";
 import { useRef, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
+import {
+  useCheckBuddyRequestQuery,
+  useSendTravelBuddyRequestMutation,
+} from "@/redux/features/travelBuddy/travelBuddyApi";
 
 type TFormInput = {
   userEmail: string;
@@ -28,7 +30,12 @@ const TravelRequestPage = ({ params }: TParams) => {
   const modalRef = useRef<HTMLDialogElement>(null);
   const [isChecked, setIsChecked] = useState(false);
   const userInfo = getUserInfo() as userPayload;
-  const { data: travelDetails, isFetching } = useGetSingleTripQuery(params.id);
+  const { data: travelDetails } = useGetSingleTripQuery(params.id);
+  const {
+    data: checkRequestData,
+    isFetching,
+    refetch,
+  } = useCheckBuddyRequestQuery(params.id);
   const [sendTravelBuddyRequest, { isLoading }] =
     useSendTravelBuddyRequestMutation();
   const { register, handleSubmit } = useForm<TFormInput>();
@@ -44,6 +51,7 @@ const TravelRequestPage = ({ params }: TParams) => {
 
       if (result?.success) {
         toast.success(result?.message);
+        refetch();
       }
     } catch (err) {
       console.log(err);
@@ -63,11 +71,11 @@ const TravelRequestPage = ({ params }: TParams) => {
   };
 
   return (
-    <UserRoute>
-      {isFetching ? (
+    <>
+      {!travelDetails || isFetching ? (
         <Loading />
       ) : (
-        <>
+        <div>
           <Title
             description={postTravelDescription}
             title="Travel request"
@@ -163,35 +171,43 @@ const TravelRequestPage = ({ params }: TParams) => {
                       className="input w-full text-sm bg-slate-200"
                     />
                   </label>
-                  <div className="flex mb-10 ml-2">
-                    <input
-                      type="checkbox"
-                      checked={isChecked}
-                      onChange={(e) => setIsChecked(e.target.checked)}
-                      className="checkbox mr-2"
-                    />
-                    <p>
-                      I agree to all the{" "}
-                      <span
-                        onClick={openModal}
-                        className="text-blue-500 cursor-pointer"
-                      >
-                        terms and conditions
-                      </span>
-                    </p>
-                  </div>
-                  <button
-                    type="submit"
-                    className={`text-white font-bold font-montserrat rounded-lg w-full py-3  transition-all duration-500 ease-in-out flex items-center justify-center ${
-                      isChecked
-                        ? "bg-yellow-500 hover:bg-yellow-800"
-                        : "bg-gray-400"
-                    }`}
-                    disabled={!isChecked}
-                  >
-                    {isLoading && <Spinner />}
-                    Submit
-                  </button>
+                  {!checkRequestData?.result && (
+                    <div className="flex mb-10 ml-2">
+                      <input
+                        type="checkbox"
+                        checked={isChecked}
+                        onChange={(e) => setIsChecked(e.target.checked)}
+                        className="checkbox mr-2"
+                      />
+                      <p>
+                        I agree to all the{" "}
+                        <span
+                          onClick={openModal}
+                          className="text-blue-500 cursor-pointer"
+                        >
+                          terms and conditions
+                        </span>
+                      </p>
+                    </div>
+                  )}
+                  {checkRequestData?.result ? (
+                    <h2 className="py-3 rounded-lg text-white font-bold bg-red-400 text-center">
+                      Request already made
+                    </h2>
+                  ) : (
+                    <button
+                      type="submit"
+                      className={`text-white font-bold font-montserrat rounded-lg w-full py-3  transition-all duration-500 ease-in-out flex items-center justify-center ${
+                        isChecked
+                          ? "bg-yellow-500 hover:bg-yellow-800"
+                          : "bg-gray-400"
+                      }`}
+                      disabled={!isChecked}
+                    >
+                      {isLoading && <Spinner />}
+                      Submit
+                    </button>
+                  )}
                 </form>
               </div>
             )}
@@ -212,9 +228,9 @@ const TravelRequestPage = ({ params }: TParams) => {
               </div>
             </div>
           </dialog>
-        </>
+        </div>
       )}
-    </UserRoute>
+    </>
   );
 };
 

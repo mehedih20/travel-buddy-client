@@ -18,14 +18,14 @@ const AuthButton = () => {
       {!userInfo ? (
         <Link
           href="/login"
-          className="btn bg-violet-700 hover:bg-violet-900 px-5 text-white font-bold"
+          className="bg-purple-800 py-3 rounded-full px-5 text-white font-bold hover:bg-teal-950 transition-all duration-300 ease-in-out"
         >
           Login
         </Link>
       ) : (
         <button
           onClick={handleLogout}
-          className="btn bg-red-600 px-5 text-white font-bold hover:bg-red-950"
+          className="bg-red-500 py-3 rounded-full px-5 text-white font-bold hover:bg-teal-950 transition-all duration-300 ease-in-out"
         >
           Logout
         </button>

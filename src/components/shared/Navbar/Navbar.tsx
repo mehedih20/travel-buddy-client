@@ -4,7 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { IoMdMail, IoMdCall } from "react-icons/io";
 import dynamic from "next/dynamic";
-import bgImg from "@/assets/Homepage/travelling-3.jpg";
+import { IoMenu } from "react-icons/io5";
+import { FaX } from "react-icons/fa6";
+import { useState } from "react";
 
 const Navbar = () => {
   const AuthButton = dynamic(
@@ -19,25 +21,28 @@ const Navbar = () => {
       ssr: false,
     }
   );
+  const [sideBarOpen, setSideBarOpen] = useState(false);
+
+  const openSidebar = () => {
+    setSideBarOpen(true);
+  };
+
+  const closeSidebar = () => {
+    setSideBarOpen(false);
+  };
+
   return (
-    <>
-      <div className="relative h-[40px] overflow-hidden">
-        <div className="absolute top-0 left-0 h-full w-full">
-          <Image
-            src={bgImg}
-            alt="title-img"
-            className="absolute w-full top-0 left-0"
-          />
-        </div>
-        <div className=" bg-purple-950 opacity-80 w-full h-full text-white p-2 absolute top-0 left-0">
-          <div className="flex xl:container justify-between">
-            <p className="flex items-center">
+    <div className="relative">
+      <div className="bg-[url('/bg-image.jpg')] bg-cover bg-center h-[40px] overflow-hidden">
+        <div className=" bg-purple-950 opacity-80 w-full h-[40px] text-white p-2 absolute top-0 left-0">
+          <div className="flex xl:container justify-between px-2">
+            <p className="text-sm sm:text-base flex items-center">
               <span className="mr-2">
                 <IoMdMail className="text-red-400" />
               </span>
               help@travelbuddy.com
             </p>
-            <p className="flex items-center">
+            <p className="text-sm sm:text-base flex items-center">
               <span className="mr-2">
                 <IoMdCall className="text-yellow-400" />
               </span>
@@ -46,73 +51,77 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <div className="bg-white drop-shadow-2xl">
-        <div className="xl:container navbar min-h-fit">
-          <div className="navbar-start">
-            <div className="dropdown">
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn btn-ghost lg:hidden"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h8m-8 6h16"
-                  />
-                </svg>
-              </div>
-              <ul
-                tabIndex={0}
-                className="menu menu-md dropdown-content mt-3 z-[1] p-3 shadow bg-base-100 rounded-box w-52"
-              >
-                <li>
-                  <Link href="/">Home</Link>
-                </li>
-                <li>
-                  <Link href="/aboutUs">About Us</Link>
-                </li>
-                <li>
-                  <Link href="/travels">Travels</Link>
-                </li>
-                <ProfileLink />
-              </ul>
-            </div>
-            <a className="btn btn-ghost h-fit flex xl:pl-0">
-              <Image src={logo} alt="logo" width={70} height={70} />
-              <span className="text-2xl text-gray-700 font-pacifico">
-                Travel <span className="text-yellow-500">Buddy</span>
-              </span>
-            </a>
-          </div>
-          <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal px-1 font-montserrat font-semibold text-base text-gray-600">
-              <li>
-                <Link href="/">Home</Link>
-              </li>
-              <li>
-                <Link href="/aboutUs">About Us</Link>
-              </li>
-              <li>
-                <Link href="/travels">Travels</Link>
-              </li>
-              <ProfileLink />
-            </ul>
-          </div>
-          <div className="navbar-end">
-            <AuthButton />
+      <div className="xl:container bg-white py-3 px-2 flex justify-between items-center">
+        <div className="flex items-center">
+          <button
+            onClick={openSidebar}
+            className="inline-block lg:hidden border-2 rounded-md w-[40px] h-[35px] mr-2 border-gray-700"
+          >
+            <IoMenu className="w-full h-full text-gray-700" />
+          </button>
+          <div className="flex items-center">
+            <Image src={logo} height={70} width={70} alt="logo" />
+            <span className="hidden sm:inline-block text-2xl text-gray-700 font-pacifico">
+              Travel <span className="text-yellow-500">Buddy</span>
+            </span>
           </div>
         </div>
+        <div className="hidden lg:flex gap-4 font-medium list-none text-gray-700">
+          <Link
+            className="hover:bg-purple-200 py-1 px-2 duration-500 ease-in-out"
+            href="/"
+          >
+            Home
+          </Link>
+
+          <Link
+            className="hover:bg-purple-200 py-1 px-2 duration-500 ease-in-out"
+            href="/aboutUs"
+          >
+            About Us
+          </Link>
+
+          <Link
+            className="hover:bg-purple-200 py-1 px-2 duration-500 ease-in-out"
+            href="/travels"
+          >
+            Travels
+          </Link>
+
+          <ProfileLink />
+        </div>
+        <AuthButton />
       </div>
-    </>
+      <div
+        className={`${
+          sideBarOpen ? "translate-x-0" : "-translate-x-full"
+        } fixed top-0 left-0 h-[100vh] z-30 w-[350px] py-5 px-4 bg-violet-950 transition-all duration-500 ease-in-out`}
+      >
+        <div className="flex items-center justify-between">
+          <div className="flex items-center">
+            <Image src={logo} height={60} width={60} alt="logo" />
+            <span className="text-xl text-white font-pacifico">
+              Travel <span className="text-yellow-500">Buddy</span>
+            </span>
+          </div>
+          <button
+            onClick={closeSidebar}
+            className="inline-block lg:hidden border-2 p-2 rounded-md w-[40px] h-[35px] mr-2 "
+          >
+            <FaX className="w-full h-full text-white" />
+          </button>
+        </div>
+        <div className="flex flex-col items-center gap-8 font-medium list-none text-lg text-gray-200 py-10">
+          <Link href="/">Home</Link>
+
+          <Link href="/aboutUs">About Us</Link>
+
+          <Link href="/travels">Travels</Link>
+
+          <ProfileLink />
+        </div>
+      </div>
+    </div>
   );
 };
 
