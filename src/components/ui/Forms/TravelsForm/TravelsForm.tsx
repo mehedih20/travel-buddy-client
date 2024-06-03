@@ -41,11 +41,11 @@ const TravelsForm = ({
             <input
               type="text"
               placeholder="Search by destination, keywords"
-              className="input input-bordered w-full mb-3 text-gray-600 placeholder:text-gray-500 font-montserrat md:col-span-3"
+              className="input input-bordered w-full mb-3 bg-white text-gray-600 placeholder:text-gray-500 font-montserrat md:col-span-3"
               {...register("searchTerm")}
             />
             <select
-              className="mb-3 select select-bordered w-full text-base text-gray-600 font-montserrat"
+              className="mb-3 select select-bordered w-full text-base bg-white text-gray-600 font-montserrat"
               {...register("travelType")}
             >
               <option label="Travel type" value=""></option>
@@ -60,13 +60,13 @@ const TravelsForm = ({
             <input
               type="date"
               placeholder="Type here"
-              className="input input-bordered w-full col-span-2 text-gray-500 font-montserrat"
+              className="input input-bordered w-full col-span-2 bg-white text-gray-500 font-montserrat"
               {...register("startDate")}
             />
             <input
               type="date"
               placeholder="Type here"
-              className="input input-bordered w-full col-span-2 text-gray-500 font-montserrat"
+              className="input input-bordered w-full col-span-2 bg-white text-gray-500 font-montserrat"
               {...register("endDate")}
             />
             <button

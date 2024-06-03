@@ -22,16 +22,26 @@ const TravelDetailsPage = ({ params }: TParams) => {
   const handleLeft = () => {
     setValue(value - 1);
   };
+
   const handleRight = () => {
     setValue(value + 1);
   };
 
   useEffect(() => {
-    if (value === totalImages) {
-      setValue(0);
-    }
+    const interval = setInterval(() => {
+      setValue(value + 1);
+    }, 5000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [value]);
+
+  useEffect(() => {
     if (value < 0) {
       setValue(totalImages - 1);
+    } else if (value === totalImages) {
+      setValue(0);
     }
   }, [value, totalImages]);
 
@@ -46,36 +56,53 @@ const TravelDetailsPage = ({ params }: TParams) => {
             description={travelDetails?.data?.description}
             route={`travels/${travelDetails?.data?.id}`}
           />
-          <div className="xl:container px-2 grid grid-cols-[repeat(auto-fit,_minmax(500px,_1fr))] gap-10 pt-[80px] pb-[120px]">
-            <div className=" bg-purple-950 rounded-xl shadow-2xl h-[400px] w-full overflow-hidden flex flex-wrap relative">
-              {travelDetails?.data?.imageLinks.map(
-                (image: string, index: number) => {
-                  return (
-                    <Image
-                      key={index}
-                      src={image}
-                      width={500}
-                      height={400}
-                      className={`w-full h-full rounded-lg ${
-                        value !== index && "hidden"
-                      }`}
-                      alt="image"
-                    />
-                  );
-                }
-              )}
-              <button
-                onClick={handleLeft}
-                className="absolute left-2 top-1/2 -translate-y-1/2 mr-2 text-white bg-purple-800 p-5 z-10 shadow-xl hover:bg-teal-800 rounded-full transition-all duration-300 ease-in-out"
-              >
-                <FaArrowLeft />
-              </button>
-              <button
-                onClick={handleRight}
-                className="absolute right-2 top-1/2 -translate-y-1/2 mr-2 text-white bg-purple-950 p-5 z-10 shadow-xl hover:bg-teal-800 rounded-full transition-all duration-300 ease-in-out"
-              >
-                <FaArrowRight />
-              </button>
+          <div className="xl:container px-4 grid grid-cols-1 lg:grid-cols-2 gap-10 pt-[80px] pb-[120px]">
+            <div>
+              <div className="h-[300px] md:h-[400px] relative overflow-hidden rounded-lg">
+                {travelDetails?.data?.imageLinks.map(
+                  (item: any, index: number) => {
+                    let position = "translate-x-[100%] opacity-0";
+
+                    if (index === value) {
+                      position = "translate-x-0 opacity-100";
+                    }
+                    if (
+                      index === value - 1 ||
+                      (value === 0 &&
+                        index === travelDetails?.data?.imageLinks.length - 1)
+                    ) {
+                      position = "translate-x-[-100%] opacity-0";
+                    }
+
+                    return (
+                      <div
+                        key={index}
+                        className={`flex flex-col items-center absolute ${position} p-5 top-0 left-0 h-full w-full transition-all duration-500 ease-in-out bg-violet-400`}
+                      >
+                        <Image
+                          src={item}
+                          alt="image"
+                          width={550}
+                          height={400}
+                          className="rounded-lg w-full h-full"
+                        />
+                      </div>
+                    );
+                  }
+                )}
+                <button
+                  onClick={handleLeft}
+                  className="absolute top-1/2 left-10 -translate-y-1/2 text-xl bg-slate-400/50 text-white p-3 rounded-full hover:bg-violet-950 transition-all duration-300 ease-in-out"
+                >
+                  <FaArrowLeft />
+                </button>
+                <button
+                  onClick={handleRight}
+                  className="absolute top-1/2 right-10 -translate-y-1/2 text-xl bg-slate-400/50 text-white p-3 rounded-full hover:bg-violet-950 transition-all duration-300 ease-in-out"
+                >
+                  <FaArrowRight />
+                </button>
+              </div>
             </div>
             <div className="text-gray-700 font-montserrat font-semibold text-base">
               <div className="mb-5 grid grid-cols-6">
