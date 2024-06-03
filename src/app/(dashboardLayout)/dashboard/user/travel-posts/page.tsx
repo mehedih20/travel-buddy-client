@@ -11,26 +11,28 @@ const TravelPostsPage = () => {
   };
 
   return (
-    <div className="pb-[150px] px-2">
-      <h1 className="font-semibold  inline-block text-3xl text-violet-950 mb-14">
-        Travel Posts
-      </h1>
-      {!tripsData && (
-        <div className="flex justify-center">
-          <Spinner />
+    <>
+      <div className="pb-[150px] px-2">
+        <h1 className="font-semibold  inline-block text-3xl text-violet-950 mb-14">
+          Travel Posts
+        </h1>
+        {!tripsData && (
+          <div className="flex justify-center">
+            <Spinner />
+          </div>
+        )}
+        <div className="grid xl:grid-cols-2 gap-10 xl:container xl:px-10">
+          {tripsData &&
+            tripsData.data.map((item: any) => (
+              <SingleTravelPost
+                key={item.id}
+                item={item}
+                handleRefetch={handleRefetch}
+              />
+            ))}
         </div>
-      )}
-      <div className="grid xl:grid-cols-2 gap-10 xl:container xl:px-10">
-        {tripsData &&
-          tripsData.data.map((item: any) => (
-            <SingleTravelPost
-              key={item.id}
-              item={item}
-              handleRefetch={handleRefetch}
-            />
-          ))}
       </div>
-    </div>
+    </>
   );
 };
 

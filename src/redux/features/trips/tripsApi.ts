@@ -9,6 +9,7 @@ const tripsApi = baseApi.injectEndpoints({
         method: "POST",
         body: data,
       }),
+      invalidatesTags: ["trips"],
     }),
     getTrips: builder.query({
       query: (queryObj: Record<string, any>) => {
@@ -26,6 +27,7 @@ const tripsApi = baseApi.injectEndpoints({
           params,
         };
       },
+      providesTags: ["trips"],
     }),
     getSingleTrip: builder.query({
       query: (id) => ({
@@ -38,6 +40,7 @@ const tripsApi = baseApi.injectEndpoints({
         url: "/user/trips",
         method: "GET",
       }),
+      providesTags: ["trips"],
     }),
     getTravelTypes: builder.query({
       query: () => ({
@@ -55,6 +58,7 @@ const tripsApi = baseApi.injectEndpoints({
           body: remaingData,
         };
       },
+      invalidatesTags: ["trips"],
     }),
     deleteTrip: builder.mutation({
       query: (tripId) => ({
