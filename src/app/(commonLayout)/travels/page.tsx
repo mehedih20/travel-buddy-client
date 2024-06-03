@@ -30,7 +30,7 @@ const Travels = () => {
   };
 
   return (
-    <div className="bg-purple-800">
+    <div className="bg-violet-300">
       <Title title="Travels" route="travels" description={travelDescription} />
       <div className="px-2 xl:container pb-10">
         <TravelsForm
@@ -47,7 +47,7 @@ const Travels = () => {
             <h2 className="text-white text-2xl font-montserrat mt-16 bg-purple-950 py-2 px-5 inline-block rounded-md">
               Total post found : {travelsData?.meta?.total}
             </h2>
-            <div className="grid grid-cols-[repeat(auto-fit,_minmax(400px,_1fr))] gap-10 py-[80px]">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 lg:gap-10 py-[80px] px-2">
               {travelsData?.data?.map((item: TTrip) => {
                 return <SingleTravel key={item.id} item={item} />;
               })}

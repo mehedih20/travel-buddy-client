@@ -81,7 +81,7 @@ const TravelRequestPage = ({ params }: TParams) => {
             title="Travel request"
             route={`travels/request/${params.id}`}
           />
-          <div className="bg-purple-800 py-[80px]">
+          <div className="bg-violet-300 py-[80px]">
             {travelDetails?.data && (
               <div className="xl:container px-2">
                 <div className="max-w-[1000px] mx-auto rounded-lg grid lg:grid-cols-2 gap-4 mb-10">

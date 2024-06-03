@@ -8,6 +8,7 @@ import {
 import { TTravelsFormInput } from "@/types/travelsTypes";
 import { useGetTravelTypesQuery } from "@/redux/features/trips/tripsApi";
 import Spinner from "../../Spinner/Spinner";
+import { usePathname } from "next/navigation";
 
 type TravelsFormProps = {
   register: UseFormRegister<TTravelsFormInput>;
@@ -24,61 +25,66 @@ const TravelsForm = ({
   onSubmit,
   handleClear,
 }: TravelsFormProps) => {
+  const pathname = usePathname();
   const { data: travelTypesData } = useGetTravelTypesQuery(undefined);
 
   return (
     <>
       <form
-        className="p-[60px] max-w-[1000px] bg-purple-600 rounded-3xl mx-auto -mt-14 relative z-10 shadow-xl"
+        className={`max-w-[1000px] bg-[url('/bg-image.jpg')] bg-cover bg-top rounded-lg md:rounded-3xl mx-auto ${
+          pathname === "/travels" && "-mt-14"
+        } relative z-10 shadow-xl overflow-hidden border border-gray-500`}
         onSubmit={handleSubmit(onSubmit)}
       >
-        <div className=" grid grid-cols-4 gap-3">
-          <input
-            type="text"
-            placeholder="Search by destination, keywords"
-            className="input input-bordered w-full mb-5 text-gray-600 placeholder:text-gray-500 font-montserrat col-span-3"
-            {...register("searchTerm")}
-          />
-          <select
-            className="select select-bordered w-full text-base text-gray-600 font-montserrat"
-            {...register("travelType")}
-          >
-            <option label="Travel type" value=""></option>
-            {travelTypesData?.data?.map((item: string, index: number) => (
-              <option key={index} value={item}>
-                {item}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className=" grid grid-cols-6 gap-3">
-          <input
-            type="date"
-            placeholder="Type here"
-            className="input input-bordered w-full col-span-2 text-gray-500 font-montserrat"
-            {...register("startDate")}
-          />
-          <input
-            type="date"
-            placeholder="Type here"
-            className="input input-bordered w-full col-span-2 text-gray-500 font-montserrat"
-            {...register("endDate")}
-          />
-          <button
-            type="submit"
-            className="flex items-center bg-orange-500 py-3 w-full rounded-lg text-white justify-center font-bold font-montserrat hover:bg-orange-800 transition-all duration-500 ease-in-out"
-          >
-            {isFetching ? <Spinner /> : <FaSearch className="mr-1 -mt-0.5" />}
-            Search
-          </button>
-          <button
-            onClick={handleClear}
-            type="submit"
-            className="flex items-center bg-red-800 py-3 w-full rounded-lg text-white justify-center font-bold font-montserrat hover:bg-red-950 transition-all duration-500 ease-in-out"
-          >
-            <FaTrash className="mr-1 -mt-0.5" />
-            Clear
-          </button>
+        <div className="p-8 md:p-[60px] w-full h-full bg-purple-900/80">
+          <div className=" grid md:grid-cols-4 md:gap-3">
+            <input
+              type="text"
+              placeholder="Search by destination, keywords"
+              className="input input-bordered w-full mb-3 text-gray-600 placeholder:text-gray-500 font-montserrat md:col-span-3"
+              {...register("searchTerm")}
+            />
+            <select
+              className="mb-3 select select-bordered w-full text-base text-gray-600 font-montserrat"
+              {...register("travelType")}
+            >
+              <option label="Travel type" value=""></option>
+              {travelTypesData?.data?.map((item: string, index: number) => (
+                <option key={index} value={item}>
+                  {item}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className=" grid md:grid-cols-6 gap-3">
+            <input
+              type="date"
+              placeholder="Type here"
+              className="input input-bordered w-full col-span-2 text-gray-500 font-montserrat"
+              {...register("startDate")}
+            />
+            <input
+              type="date"
+              placeholder="Type here"
+              className="input input-bordered w-full col-span-2 text-gray-500 font-montserrat"
+              {...register("endDate")}
+            />
+            <button
+              type="submit"
+              className="flex items-center bg-orange-500 py-3 w-full rounded-lg text-white justify-center font-bold font-montserrat hover:bg-orange-800 transition-all duration-500 ease-in-out"
+            >
+              {isFetching ? <Spinner /> : <FaSearch className="mr-1 -mt-0.5" />}
+              Search
+            </button>
+            <button
+              type="reset"
+              onClick={handleClear}
+              className="flex items-center bg-red-800 py-3 w-full rounded-lg text-white justify-center font-bold font-montserrat hover:bg-red-950 transition-all duration-500 ease-in-out"
+            >
+              <FaTrash className="mr-1 -mt-0.5" />
+              Clear
+            </button>
+          </div>
         </div>
       </form>
     </>
