@@ -67,14 +67,16 @@ const TripPost = () => {
           >
             <label className="form-control w-full mb-5">
               <div className="label">
-                <span className="label-text">Destination</span>
+                <span className="label-text text-gray-600 font-semibold">
+                  Destination
+                </span>
               </div>
               <input
                 type="text"
                 {...register("destination", {
                   required: "Destination is required",
                 })}
-                className="input input-bordered w-full text-sm"
+                className="input input-bordered border-violet-400 border-gray-400 bg-white w-full text-sm"
                 placeholder="eg. France"
               />
               {errors.destination && (
@@ -85,14 +87,16 @@ const TripPost = () => {
             </label>
             <label className="form-control w-full mb-5">
               <div className="label">
-                <span className="label-text">Description</span>
+                <span className="label-text text-gray-600 font-semibold">
+                  Description
+                </span>
               </div>
               <textarea
                 {...register("description", {
                   required: "Description is required",
                 })}
-                className="textarea 
-                textarea-bordered h-24"
+                className="textarea bg-white 
+                textarea-bordered border-violet-400 h-24"
                 placeholder="Detailed description"
               ></textarea>
               {errors.description && (
@@ -104,14 +108,16 @@ const TripPost = () => {
 
             <label className="form-control w-full mb-5">
               <div className="label">
-                <span className="label-text">Travel Type</span>
+                <span className="label-text text-gray-600 font-semibold">
+                  Travel Type
+                </span>
               </div>
               <input
                 type="text"
                 {...register("travelType", {
                   required: "Travel type is required",
                 })}
-                className="input input-bordered w-full text-sm"
+                className="input input-bordered border-violet-400 bg-white w-full text-sm"
                 placeholder="eg. Business"
               />
               {errors.travelType && (
@@ -122,7 +128,7 @@ const TripPost = () => {
             </label>
             <label className="form-control w-full mb-5">
               <div className="label">
-                <span className="label-text">
+                <span className="label-text text-gray-600 font-semibold">
                   Activities (separated by comma)
                 </span>
               </div>
@@ -131,7 +137,7 @@ const TripPost = () => {
                 {...register("activities", {
                   required: "Activities is required",
                 })}
-                className="input input-bordered w-full text-sm"
+                className="input input-bordered border-violet-400 bg-white w-full text-sm"
                 placeholder="eg. Hiking, Running"
               />
               {errors.activities && (
@@ -142,7 +148,7 @@ const TripPost = () => {
             </label>
             <label className="form-control w-full mb-5">
               <div className="label">
-                <span className="label-text">
+                <span className="label-text text-gray-600 font-semibold">
                   Itinerary (separated by comma)
                 </span>
               </div>
@@ -150,8 +156,8 @@ const TripPost = () => {
                 {...register("itinerary", {
                   required: "Itinerary is required",
                 })}
-                className="textarea 
-                textarea-bordered h-24"
+                className="textarea bg-white 
+                textarea-bordered border-violet-400 h-24"
                 placeholder={`Day 1: Arrival and beach day,\nDay 2: Yoga retreat`}
               ></textarea>
               {errors.itinerary && (
@@ -162,7 +168,7 @@ const TripPost = () => {
             </label>
             <label className="form-control w-full mb-5">
               <div className="label">
-                <span className="label-text">
+                <span className="label-text text-gray-600 font-semibold">
                   Image links (separated by comma)
                 </span>
               </div>
@@ -171,7 +177,7 @@ const TripPost = () => {
                 {...register("imageLinks", {
                   required: "Image links are required",
                 })}
-                className="input input-bordered w-full text-sm"
+                className="input input-bordered border-violet-400 bg-white w-full text-sm"
                 placeholder="eg. https://www.img1.com , https://www.img2.com "
               />
               {errors.imageLinks && (
@@ -183,14 +189,16 @@ const TripPost = () => {
             <div className="grid grid-cols-2 gap-5 mb-5">
               <label className="form-control w-full">
                 <div className="label">
-                  <span className="label-text">Start Date</span>
+                  <span className="label-text text-gray-600 font-semibold">
+                    Start Date
+                  </span>
                 </div>
                 <input
                   type="date"
                   {...register("startDate", {
                     required: "Start date is required",
                   })}
-                  className="input input-bordered w-full text-sm"
+                  className="input input-bordered border-violet-400 bg-white w-full text-sm"
                 />
                 {errors.startDate && (
                   <span className="ml-2 mt-2 text-sm text-red-500">
@@ -200,14 +208,16 @@ const TripPost = () => {
               </label>
               <label className="form-control w-full">
                 <div className="label">
-                  <span className="label-text">End Date</span>
+                  <span className="label-text text-gray-600 font-semibold">
+                    End Date
+                  </span>
                 </div>
                 <input
                   type="date"
                   {...register("endDate", {
                     required: "End date is required",
                   })}
-                  className="input input-bordered w-full text-sm"
+                  className="input input-bordered border-violet-400 bg-white w-full text-sm"
                 />
                 {errors.endDate && (
                   <span className="ml-2 mt-2 text-sm text-red-500">
@@ -218,14 +228,16 @@ const TripPost = () => {
             </div>
             <label className="form-control w-full mb-5">
               <div className="label">
-                <span className="label-text">Budget</span>
+                <span className="label-text text-gray-600 font-semibold">
+                  Budget
+                </span>
               </div>
               <input
                 type="text"
                 {...register("budget", {
                   required: "Budget is required",
                 })}
-                className="input input-bordered w-full text-sm"
+                className="input input-bordered border-violet-400 bg-white w-full text-sm"
                 placeholder="eg. 3000"
               />
               {errors.budget && (

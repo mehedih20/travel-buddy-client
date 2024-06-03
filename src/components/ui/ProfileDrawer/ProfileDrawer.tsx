@@ -116,6 +116,7 @@ const ProfileDrawer = ({ children }: { children: React.ReactNode }) => {
                   className="bg-violet-950 py-3 mx-2 mb-3 rounded-lg text-center text-base text-white font-montserrat font-semibold"
                   href={route.route}
                   key={index}
+                  onClick={handleCloseSideDrawer}
                 >
                   {route.name}
                 </Link>

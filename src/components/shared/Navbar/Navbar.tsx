@@ -112,13 +112,19 @@ const Navbar = () => {
           </button>
         </div>
         <div className="flex flex-col items-center gap-8 font-medium list-none text-lg text-gray-200 py-10">
-          <Link href="/">Home</Link>
+          <Link onClick={closeSidebar} href="/">
+            Home
+          </Link>
 
-          <Link href="/aboutUs">About Us</Link>
+          <Link onClick={closeSidebar} href="/aboutUs">
+            About Us
+          </Link>
 
-          <Link href="/travels">Travels</Link>
+          <Link onClick={closeSidebar} href="/travels">
+            Travels
+          </Link>
 
-          <ProfileLink />
+          <ProfileLink closeSideBar={closeSidebar} />
         </div>
       </div>
     </div>

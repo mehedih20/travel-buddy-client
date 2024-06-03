@@ -38,7 +38,7 @@ const PhotoUpdateForm = ({ handleClose }: TProps) => {
     >
       <input
         type="text"
-        className="input"
+        className="input input-bordered bg-white"
         placeholder="image link"
         {...register("photoUrl")}
       />
