@@ -76,7 +76,7 @@ const TripPost = () => {
                 {...register("destination", {
                   required: "Destination is required",
                 })}
-                className="input input-bordered border-violet-400 border-gray-400 bg-white w-full text-sm"
+                className="input input-bordered border-violet-400 bg-white w-full text-sm"
                 placeholder="eg. France"
               />
               {errors.destination && (

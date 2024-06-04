@@ -5,6 +5,7 @@ import {
   superAdminRoutes,
   userRoutes,
 } from "@/constants/routesData";
+import { logoutUser } from "@/services/actions/logoutUser";
 import { getUserInfo, removeUser } from "@/services/auth.services";
 import { userPayload } from "@/types";
 import Image from "next/image";
@@ -22,9 +23,7 @@ const ProfileDrawer = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
 
   const handleLogout = () => {
-    removeUser();
-    router.push("/");
-    router.refresh();
+    logoutUser(router);
   };
 
   const roleBasedRoutes =
