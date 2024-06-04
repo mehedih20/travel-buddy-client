@@ -1,5 +1,5 @@
 "use client";
-import SingleTravelPost from "@/components/ui/SingleTravelPost/SingleTravelPost";
+import ManageSingleTravel from "@/components/ui/ManageSingleTravel/ManageSingleTravel";
 import Spinner from "@/components/ui/Spinner/Spinner";
 import { useGetSingleUserTripsQuery } from "@/redux/features/trips/tripsApi";
 
@@ -24,7 +24,7 @@ const TravelPostsPage = () => {
         <div className="grid xl:grid-cols-2 gap-10 xl:container xl:px-10">
           {tripsData &&
             tripsData.data.map((item: any) => (
-              <SingleTravelPost
+              <ManageSingleTravel
                 key={item.id}
                 item={item}
                 handleRefetch={handleRefetch}

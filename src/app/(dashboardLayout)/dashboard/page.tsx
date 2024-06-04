@@ -19,9 +19,10 @@ const DashboardPage = () => {
       : superAdminRoutes;
 
   return (
-    <div className="px-2 mb-[100px]">
+    <div className="px-2 pb-[100px]">
       <h1 className="text-3xl mb-10 text-violet-950">
-        Welcome to your dashboard!
+        Welcome to your dashboard,{" "}
+        <span className=" text-orange-800">{userInfo.name}</span>
       </h1>
       <h2 className=" uppercase text-2xl bg-violet-400 py-5 font-semibold px-4 rounded-md shadow-lg text-violet-95  0">
         Your Services

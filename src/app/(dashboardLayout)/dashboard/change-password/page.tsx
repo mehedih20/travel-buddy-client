@@ -53,7 +53,7 @@ const ChangePasswordPage = () => {
   };
 
   return (
-    <div className="mb-[100px] px-2">
+    <div className="pb-[100px] px-2">
       <h1 className="font-semibold   inline-block text-3xl text-violet-950 mb-14">
         Change Password
       </h1>

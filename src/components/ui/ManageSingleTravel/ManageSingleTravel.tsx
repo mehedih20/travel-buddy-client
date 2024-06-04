@@ -6,27 +6,21 @@ import Spinner from "../Spinner/Spinner";
 import { useDeleteTripMutation } from "@/redux/features/trips/tripsApi";
 import { useGetSingleTripTravelBuddiesQuery } from "@/redux/features/travelBuddy/travelBuddyApi";
 import EditPostModal from "../EditPostModal/EditPostModal";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 type TProps = {
   item: any;
   handleRefetch: () => void;
 };
 
-const SingleTravelPost = ({ item, handleRefetch }: TProps) => {
+const ManageSingleTravel = ({ item, handleRefetch }: TProps) => {
+  const modalRef = useRef<HTMLDialogElement>(null);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [deleteTrip, { isLoading: deleteLoading }] = useDeleteTripMutation();
-  const { data: existingBuddyData, isSuccess } =
+  const { data: existingBuddyData, isFetching } =
     useGetSingleTripTravelBuddiesQuery(item.id);
 
   const handleDelete = async () => {
-    if (isSuccess) {
-      if (existingBuddyData?.data?.length > 0) {
-        toast.error("You can't delete this trip. It has buddies already");
-        return;
-      }
-    }
-
     try {
       const result: any = await deleteTrip(item.id).unwrap();
 
@@ -45,6 +39,17 @@ const SingleTravelPost = ({ item, handleRefetch }: TProps) => {
   };
   const handleCloseEditModal = () => {
     setIsEditModalOpen(false);
+  };
+
+  const openDeleteModal = () => {
+    if (modalRef.current) {
+      modalRef.current.showModal();
+    }
+  };
+  const closeDeleteModal = () => {
+    if (modalRef.current) {
+      modalRef.current.close();
+    }
   };
 
   return (
@@ -85,13 +90,13 @@ const SingleTravelPost = ({ item, handleRefetch }: TProps) => {
           <div className="flex gap-3 mb-5">
             <button
               onClick={handleOpenEditModal}
-              className="w-[150px] bg-purple-800 py-2 px-8 text-white font-semibold hover:bg-teal-950 duration-300 ease-in-out"
+              className="w-[150px] bg-purple-800 py-2 text-white font-semibold hover:bg-teal-950 duration-300 ease-in-out rounded-md"
             >
               Edit
             </button>
             <button
-              onClick={handleDelete}
-              className="w-[150px] flex items-center bg-red-600 py-2 px-8 text-white font-semibold hover:bg-teal-950 duration-300 ease-in-out"
+              onClick={openDeleteModal}
+              className="w-[150px] cursor-pointer flex justify-center items-center bg-red-600 py-2 text-white font-semibold hover:bg-teal-950 duration-300 ease-in-out rounded-md"
             >
               {deleteLoading && <Spinner />} Delete
             </button>
@@ -103,8 +108,43 @@ const SingleTravelPost = ({ item, handleRefetch }: TProps) => {
         isEditModalOpen={isEditModalOpen}
         handleCloseEditModal={handleCloseEditModal}
       />
+      <dialog
+        ref={modalRef}
+        id="my_modal_5"
+        className="modal modal-bottom sm:modal-middle"
+      >
+        <div className="modal-box">
+          <h3 className="font-bold text-lg text-red-700">Delete Trip</h3>
+          <p className="py-1">Are you sure? This action cannot be undone!</p>
+          <p className="py-4 font-bold text-red-800">
+            Travel buddy request made:{" "}
+            {isFetching ? <Spinner /> : existingBuddyData?.data?.length}
+          </p>
+
+          {existingBuddyData?.data?.length > 0 && (
+            <p className="py-1 font-bold">
+              N.B. If any travel request is made for this trip, they will be
+              deleted also!
+            </p>
+          )}
+
+          <div className="modal-action">
+            <form method="dialog">
+              <button
+                onClick={handleDelete}
+                className="btn bg-red-600 text-white mr-2"
+              >
+                Delete
+              </button>
+              <button className="btn btn-warning" onClick={closeDeleteModal}>
+                Close
+              </button>
+            </form>
+          </div>
+        </div>
+      </dialog>
     </>
   );
 };
 
-export default SingleTravelPost;
+export default ManageSingleTravel;

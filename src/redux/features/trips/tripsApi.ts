@@ -65,6 +65,7 @@ const tripsApi = baseApi.injectEndpoints({
         url: `/delete-trip/${tripId}`,
         method: "DELETE",
       }),
+      invalidatesTags: ["trips"],
     }),
   }),
 });
