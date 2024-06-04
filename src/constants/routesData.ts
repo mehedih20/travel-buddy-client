@@ -1,11 +1,19 @@
-export const commonRoutes = [
+export const userRoutes = [
   {
     name: "Dashboard",
     route: "/dashboard",
   },
   {
-    name: "Profile",
+    name: "My Profile",
     route: "/dashboard/profile",
+  },
+  {
+    name: "Travel Posts",
+    route: "/dashboard/user/travel-posts",
+  },
+  {
+    name: "Travel Requests",
+    route: "/dashboard/user/travel-requests",
   },
   {
     name: "Change Password",
@@ -13,24 +21,32 @@ export const commonRoutes = [
   },
 ];
 
-export const userRoutes = [
-  {
-    name: "Travel Requests",
-    route: "/dashboard/user/travel-requests",
-  },
-  {
-    name: "Travel Posts",
-    route: "/dashboard/user/travel-posts",
-  },
-];
-
 export const adminRoutes = [
   {
+    name: "Dashboard",
+    route: "/dashboard",
+  },
+  {
     name: "Manage Trips",
-    route: "/manage-trips",
+    route: "/dashboard/admin/manage-trips",
   },
   {
     name: "Manage Users",
-    route: "/manage-users",
+    route: "/dashboard/admin/manage-users",
+  },
+  {
+    name: "Change Password",
+    route: "/dashboard/change-password",
+  },
+];
+
+export const superAdminRoutes = [
+  {
+    name: "Dashboard",
+    route: "/dashboard",
+  },
+  {
+    name: "Manage Admin",
+    route: "dashboard/super-admin/manage-admin",
   },
 ];

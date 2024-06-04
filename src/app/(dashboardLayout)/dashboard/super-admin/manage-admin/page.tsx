@@ -3,13 +3,13 @@ import SingleUserCard from "@/components/ui/SingleUserCard/SingleUserCard";
 import Spinner from "@/components/ui/Spinner/Spinner";
 import { useGetUsersQuery } from "@/redux/features/user/userApi";
 
-const ManageUsersPage = () => {
+const MakeAdminPage = () => {
   const { data: usersData, isFetching } = useGetUsersQuery(undefined);
 
   return (
     <div className="mb-[100px] px-2">
       <h1 className="font-semibold   inline-block text-3xl text-violet-950 mb-14">
-        Manage Users
+        Manage Admin
       </h1>
       {isFetching && (
         <div className="flex justify-center w-full">
@@ -27,4 +27,4 @@ const ManageUsersPage = () => {
   );
 };
 
-export default ManageUsersPage;
+export default MakeAdminPage;

@@ -33,10 +33,10 @@ const TravelsForm = ({
       <form
         className={`max-w-[1000px] bg-[url('/bg-image.jpg')] bg-cover bg-top rounded-lg md:rounded-3xl mx-auto ${
           pathname === "/travels" && "-mt-14"
-        } relative z-10 shadow-xl overflow-hidden border border-gray-500`}
+        } shadow-2xl`}
         onSubmit={handleSubmit(onSubmit)}
       >
-        <div className="p-8 md:p-[60px] w-full h-full bg-purple-900/80">
+        <div className="p-8 md:p-[60px] w-full h-full bg-purple-900/80 rounded-lg md:rounded-3xl border border-gray-500">
           <div className=" grid md:grid-cols-4 md:gap-3">
             <input
               type="text"
@@ -59,19 +59,17 @@ const TravelsForm = ({
           <div className=" grid md:grid-cols-6 gap-3">
             <input
               type="date"
-              placeholder="Type here"
-              className="input input-bordered w-full col-span-2 bg-white text-gray-500 font-montserrat"
+              className="input input-bordered bg-white w-full col-span-2 text-gray-600 font-montserrat"
               {...register("startDate")}
             />
             <input
               type="date"
-              placeholder="Type here"
-              className="input input-bordered w-full col-span-2 bg-white text-gray-500 font-montserrat"
+              className="input input-bordered bg-white w-full col-span-2 text-gray-600 font-montserrat"
               {...register("endDate")}
             />
             <button
               type="submit"
-              className="flex items-center bg-orange-500 py-3 w-full rounded-lg text-white justify-center font-bold font-montserrat hover:bg-orange-800 transition-all duration-500 ease-in-out"
+              className="flex items-center bg-orange-500 py-1 w-full rounded-lg text-white justify-center font-bold font-montserrat hover:bg-orange-800 transition-all duration-500 ease-in-out"
             >
               {isFetching ? <Spinner /> : <FaSearch className="mr-1 -mt-0.5" />}
               Search

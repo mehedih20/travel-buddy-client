@@ -1,6 +1,10 @@
 "use client";
 import logo from "@/assets/Homepage/travel-logo.png";
-import { adminRoutes, commonRoutes, userRoutes } from "@/constants/routesData";
+import {
+  adminRoutes,
+  superAdminRoutes,
+  userRoutes,
+} from "@/constants/routesData";
 import { getUserInfo, removeUser } from "@/services/auth.services";
 import { userPayload } from "@/types";
 import Image from "next/image";
@@ -23,8 +27,12 @@ const ProfileDrawer = ({ children }: { children: React.ReactNode }) => {
     router.refresh();
   };
 
-  const roleBasedRoutes = userInfo?.role === "user" ? userRoutes : adminRoutes;
-  const finalRoutes = [...commonRoutes, ...roleBasedRoutes];
+  const roleBasedRoutes =
+    userInfo?.role === "user"
+      ? userRoutes
+      : userInfo?.role === "admin"
+      ? adminRoutes
+      : superAdminRoutes;
 
   const handleOpenSideDrawer = () => {
     setOpenSideDrawer(true);
@@ -44,7 +52,7 @@ const ProfileDrawer = ({ children }: { children: React.ReactNode }) => {
         </div>
         <div className="flex flex-col flex-1 bg-purple-900/80 mx-5 mt-3 rounded-md py-5">
           {userInfo &&
-            finalRoutes.map((item, index) => {
+            roleBasedRoutes.map((item, index) => {
               return (
                 <Link
                   className={`${
@@ -110,7 +118,7 @@ const ProfileDrawer = ({ children }: { children: React.ReactNode }) => {
         </div>
         <div className="flex flex-col flex-1 bg-purple-900/80 mx-5 mt-3 rounded-md py-5">
           {userInfo &&
-            finalRoutes.map((route, index) => {
+            roleBasedRoutes.map((route, index) => {
               return (
                 <Link
                   className="bg-violet-950 py-3 mx-2 mb-3 rounded-lg text-center text-base text-white font-montserrat font-semibold"

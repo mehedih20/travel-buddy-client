@@ -8,6 +8,8 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import Spinner from "@/components/ui/Spinner/Spinner";
+import { useAppDispatch } from "@/redux/hooks";
+import { baseApi } from "@/redux/api/baseApi";
 
 interface IFormInput {
   email: string;
@@ -24,6 +26,7 @@ interface ILoginResponse {
 const LoginPage = () => {
   const [loading, setLoading] = useState(false);
   const { register, handleSubmit } = useForm<IFormInput>();
+  const dispatch = useAppDispatch();
   const router = useRouter();
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
@@ -40,6 +43,7 @@ const LoginPage = () => {
           JSON.stringify(userInfo.data.token)
         );
         router.push("/");
+        dispatch(baseApi.util.invalidateTags(["trips", "user", "users"]));
       }
     } catch (err) {
       console.log(err);
@@ -67,15 +71,15 @@ const LoginPage = () => {
               className="flex flex-col p-10 bg-slate-100"
             >
               <input
-                className="bg-transparent border-b-2 mb-8 w-[270px] md:w-[300px] place-content-center text-black border-b-gray-300 font-montserrat placeholder-gray-500 outline-none"
+                type="text"
+                className="bg-transparent border-x-0 border-t-0 border-b-2 mb-8 w-[270px] md:w-[300px] place-content-center text-black border-b-blue-300 font-montserrat placeholder-gray-500 outline-none"
                 {...register("email")}
                 placeholder="Email"
               />
-
               <input
-                className="bg-transparent border-b-2 mb-8 w-[270px] md:w-[300px] place-content-center text-black border-b-gray-300 font-montserrat placeholder-gray-500 outline-none"
-                {...register("password")}
                 type="password"
+                className="bg-transparent border-x-0 border-t-0 border-b-2 mb-8 w-[270px] md:w-[300px] place-content-center text-black border-b-blue-300 font-montserrat placeholder-gray-500 outline-none"
+                {...register("password")}
                 placeholder="Password"
               />
 

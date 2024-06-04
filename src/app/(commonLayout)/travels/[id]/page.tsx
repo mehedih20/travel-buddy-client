@@ -105,16 +105,16 @@ const TravelDetailsPage = ({ params }: TParams) => {
               </div>
             </div>
             <div className="text-gray-700 font-montserrat font-semibold text-base">
-              <div className="mb-5 grid grid-cols-6">
-                <p>Travel type : </p>
-                <p className="bg-blue-500 col-span-5 -mt-1 text-white font-semibold py-1 px-3 rounded-xl max-w-fit">
+              <div className="mb-5 grid grid-cols-4 lg:grid-cols-5">
+                <p className="col-span-1">Travel type: </p>
+                <p className="bg-blue-500 col-span-3 lg:col-span-4 -mt-1 text-white font-semibold py-1 px-3 rounded-xl max-w-fit">
                   {travelDetails?.data?.travelType}
                 </p>
               </div>
 
-              <div className="mb-5 grid grid-cols-6">
-                <span>Acvities :</span>
-                <div className="col-span-5 flex flex-col text-gray-600">
+              <div className="mb-5 grid grid-cols-4 lg:grid-cols-5">
+                <span>Acvities:</span>
+                <div className="col-span-3 lg:col-span-4 flex flex-col text-gray-600">
                   {travelDetails?.data?.activities.map(
                     (item: string, index: number) => (
                       <p key={index} className="mb-2">
@@ -124,9 +124,9 @@ const TravelDetailsPage = ({ params }: TParams) => {
                   )}
                 </div>
               </div>
-              <div className="mb-5 grid grid-cols-6">
-                <span>Itinerary :</span>
-                <div className="col-span-5 flex flex-col text-gray-600">
+              <div className="mb-5 grid grid-cols-4 lg:grid-cols-5">
+                <span>Itinerary:</span>
+                <div className="col-span-3 lg:col-span-4 flex flex-col text-gray-600">
                   {travelDetails?.data?.itinerary.map(
                     (item: string, index: number) => (
                       <p key={index} className="mb-2">
@@ -136,9 +136,9 @@ const TravelDetailsPage = ({ params }: TParams) => {
                   )}
                 </div>
               </div>
-              <div className="mb-10 grid grid-cols-6">
-                <p>Duration : </p>
-                <p className="col-span-5 flex items-center gap-3 -mt-1 text-white font-semibold ">
+              <div className="mb-10 grid grid-cols-4 lg:grid-cols-5">
+                <p>Duration: </p>
+                <p className="col-span-3 lg:col-span-4 flex items-center gap-3 -mt-1 text-white font-semibold ">
                   <span className="bg-green-500 py-1 px-3 rounded-xl max-w-fit">
                     {travelDetails?.data?.startDate}
                   </span>
@@ -151,9 +151,9 @@ const TravelDetailsPage = ({ params }: TParams) => {
                   </span>
                 </p>
               </div>
-              <div className="mb-5 grid grid-cols-6">
-                <p>Budget : </p>
-                <p className="col-span-5 text-gray-600 -mt-1 font-semibold text-2xl">
+              <div className="mb-5 grid grid-cols-4 lg:grid-cols-5">
+                <p>Budget: </p>
+                <p className="col-span-3 lg:col-span-4 text-gray-600 -mt-1 font-semibold text-2xl">
                   <span className="text-green-600">$</span>
                   {travelDetails?.data?.budget}
                 </p>
