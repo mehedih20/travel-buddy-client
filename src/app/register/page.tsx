@@ -3,8 +3,14 @@ import Image from "next/image";
 import loginLogo from "../../assets/Login/login-vector.png";
 import { SubmitHandler, useForm } from "react-hook-form";
 import Link from "next/link";
-import { FiHome } from "react-icons/fi";
+import Spinner from "@/components/ui/Spinner/Spinner";
+import { registerUser } from "@/services/actions/registerUser";
 import { useState } from "react";
+import { toast } from "sonner";
+import { loginUser } from "@/services/actions/loginUser";
+import { useRouter } from "next/navigation";
+import { useAppDispatch } from "@/redux/hooks";
+import { baseApi } from "@/redux/api/baseApi";
 
 interface IFormInput {
   name: string;
@@ -18,10 +24,48 @@ interface IFormInput {
   };
 }
 
-const LoginPage = () => {
-  const [loading, setLoading] = useState(false);
-  const { register, handleSubmit } = useForm<IFormInput>();
-  const onSubmit: SubmitHandler<IFormInput> = (data) => console.log(data);
+const RegisterPage = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
+  const dispatch = useAppDispatch();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<IFormInput>();
+
+  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+    if (data.profile?.age) {
+      data.profile.age = Number(data.profile.age);
+    }
+    try {
+      setIsLoading(true);
+      const userInfo = await registerUser(data);
+
+      if (userInfo.success) {
+        const result = await loginUser({
+          email: data.email,
+          password: data.password,
+        });
+
+        if (result?.data?.token) {
+          localStorage.setItem(
+            "accessToken",
+            JSON.stringify(result.data.token)
+          );
+          toast.success(userInfo.message);
+          router.push("/");
+          dispatch(baseApi.util.invalidateTags(["trips", "user", "users"]));
+        }
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error("Something went wrong");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-purple-600 to-violet-950  flex justify-center items-center">
@@ -41,68 +85,108 @@ const LoginPage = () => {
               onSubmit={handleSubmit(onSubmit)}
               className="flex flex-col p-10 bg-slate-100"
             >
+              <div className="mb-8 relative">
+                <span className=" absolute text-red-400 -top-1 right-0">*</span>
+                <input
+                  type="text"
+                  className="bg-transparent border-b-2 w-[270px] md:w-[300px] place-content-center border-b-gray-300 font-montserrat placeholder-gray-500 outline-none"
+                  {...register("name", { required: "Name is required" })}
+                  placeholder="Name"
+                />
+                {errors.name && (
+                  <p className="text-red-500 text-sm text-right">
+                    {errors.name.message}
+                  </p>
+                )}
+              </div>
+              <div className="mb-8 relative">
+                <span className=" absolute text-red-400 -top-1 right-0">*</span>
+                <input
+                  type="text"
+                  className="bg-transparent border-b-2 w-[270px] md:w-[300px] place-content-center border-b-gray-300 font-montserrat placeholder-gray-500 outline-none"
+                  {...register("username", {
+                    required: "Username is required",
+                  })}
+                  placeholder="Username"
+                />
+                {errors.username && (
+                  <p className="text-red-500 text-sm text-right">
+                    {errors.username.message}
+                  </p>
+                )}
+              </div>
+              <div className="mb-8 relative">
+                <span className=" absolute text-red-400 -top-1 right-0">*</span>
+                <input
+                  type="email"
+                  className="bg-transparent border-b-2 w-[270px] md:w-[300px] place-content-center border-b-gray-300 font-montserrat placeholder-gray-500 outline-none"
+                  {...register("email", {
+                    required: "Email is required",
+                  })}
+                  placeholder="Email"
+                />
+                {errors.email && (
+                  <p className="text-red-500 text-sm text-right">
+                    {errors.email.message}
+                  </p>
+                )}
+              </div>
+              <div className="mb-8 relative">
+                <span className=" absolute text-red-400 -top-1 right-0">*</span>
+                <input
+                  type="password"
+                  className="bg-transparent border-b-2 w-[270px] md:w-[300px] place-content-center border-b-gray-300 font-montserrat placeholder-gray-500 outline-none"
+                  {...register("password", {
+                    required: "Password is required",
+                    minLength: {
+                      value: 6,
+                      message: "Password must be at least 6 characters",
+                    },
+                  })}
+                  placeholder="Password"
+                />
+                {errors.password && (
+                  <p className="text-red-500 text-sm text-right">
+                    {errors.password.message}
+                  </p>
+                )}
+              </div>
+              <div className="mb-8 relative">
+                <span className=" absolute text-red-400 -top-1 right-0">*</span>
+                <input
+                  type="password"
+                  className="bg-transparent border-b-2 w-[270px] md:w-[300px] place-content-center border-b-gray-300 font-montserrat placeholder-gray-500 outline-none"
+                  {...register("confirmPassword", {
+                    required: "Please confirm your password",
+                    validate: (value) =>
+                      value === watch("password") || "Passwords do not match",
+                  })}
+                  placeholder="Confirm password"
+                />
+                {errors.confirmPassword && (
+                  <p className="text-red-500 text-sm text-right">
+                    {errors.confirmPassword.message}
+                  </p>
+                )}
+              </div>
+
               <input
-                className="bg-transparent border-b-2 mb-8 w-[270px] md:w-[300px] place-content-center border-b-gray-300 font-montserrat placeholder-gray-500 outline-none"
-                {...register("name")}
-                placeholder="Name"
-              />
-              <input
-                className="bg-transparent border-b-2 mb-8 w-[270px] md:w-[300px] place-content-center border-b-gray-300 font-montserrat placeholder-gray-500 outline-none"
-                {...register("username")}
-                placeholder="Username"
-              />
-              <input
-                className="bg-transparent border-b-2 mb-8 w-[270px] md:w-[300px] place-content-center border-b-gray-300 font-montserrat placeholder-gray-500 outline-none"
-                {...register("email")}
-                placeholder="Email"
-              />
-              <input
-                className="bg-transparent border-b-2 mb-8 w-[270px] md:w-[300px] place-content-center border-b-gray-300 font-montserrat placeholder-gray-500 outline-none"
-                {...register("password")}
-                placeholder="Password"
-                type="password"
-              />
-              <input
-                className="bg-transparent border-b-2 mb-8 w-[270px] md:w-[300px] place-content-center border-b-gray-300 font-montserrat placeholder-gray-500 outline-none"
-                {...register("confirmPassword")}
-                placeholder="Confirm Password"
-                type="password"
-              />
-              <input
+                type="text"
                 className="bg-transparent border-b-2 mb-8 w-[270px] md:w-[300px] place-content-center border-b-gray-300 font-montserrat placeholder-gray-500 outline-none"
                 {...register("profile.age")}
                 placeholder="Age"
               />
               <input
+                type="text"
                 className="bg-transparent border-b-2 mb-8 w-[270px] md:w-[300px] place-content-center border-b-gray-300 font-montserrat placeholder-gray-500 outline-none"
                 {...register("profile.bio")}
                 placeholder="Bio"
               />
               <button
-                className="bg-purple-800 hover:bg-violet-950 py-3 w-[270px] md:w-[300px] rounded-3xl text-gray-200 tracking-wide outline-none transition-all duration-700 ease-in-out flex justify-center"
+                className="bg-purple-800 hover:bg-violet-950 py-3 w-[270px] md:w-[300px] rounded-3xl text-gray-200 tracking-wide outline-none transition-all duration-700 ease-in-out flex justify-center items-center"
                 type="submit"
               >
-                {loading && (
-                  <svg
-                    className="animate-spin h-6 w-6 text-slate-200 mr-1"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                  >
-                    <circle
-                      className="opacity-25"
-                      cx="12"
-                      cy="12"
-                      r="10"
-                      stroke="currentColor"
-                      strokeWidth="4"
-                    ></circle>
-                    <path
-                      className="opacity-75"
-                      fill="currentColor"
-                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zM2 12a10 10 0 1010-10v2A8 8 0 114 12H2z"
-                    ></path>
-                  </svg>
-                )}
+                {isLoading && <Spinner />}
                 Submit
               </button>
             </form>
@@ -119,4 +203,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default RegisterPage;

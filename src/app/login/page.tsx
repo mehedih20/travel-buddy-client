@@ -3,7 +3,7 @@ import Image from "next/image";
 import loginLogo from "../../assets/Login/login-vector.png";
 import { SubmitHandler, useForm } from "react-hook-form";
 import Link from "next/link";
-import { loginUser } from "@/services/actions/login";
+import { loginUser } from "@/services/actions/loginUser";
 import { useState } from "react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";

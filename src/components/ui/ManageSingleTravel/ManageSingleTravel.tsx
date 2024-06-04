@@ -113,7 +113,7 @@ const ManageSingleTravel = ({ item, handleRefetch }: TProps) => {
         id="my_modal_5"
         className="modal modal-bottom sm:modal-middle"
       >
-        <div className="modal-box">
+        <div className="modal-box bg-white">
           <h3 className="font-bold text-lg text-red-700">Delete Trip</h3>
           <p className="py-1">Are you sure? This action cannot be undone!</p>
           <p className="py-4 font-bold text-red-800">
