@@ -38,6 +38,10 @@ export const adminRoutes = [
     name: "Approve Request",
     route: "/dashboard/admin/approve-request",
   },
+  {
+    name: "Mange Destination",
+    route: "/dashboard/admin/manage-destination",
+  },
 ];
 
 export const superAdminRoutes = [
