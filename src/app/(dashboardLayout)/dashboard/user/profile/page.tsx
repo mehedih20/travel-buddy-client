@@ -146,7 +146,7 @@ const ProfilePage = () => {
                   </button>
                 )}
                 <Link
-                  href="/dashboard/change-password"
+                  href="/dashboard/user/change-password"
                   className="flex items-center mt-5 py-2 w-[200px] justify-center rounded-full bg-purple-800 text-white text-sm hover:bg-blue-900 duration-300 ease-in-out"
                 >
                   <FaKey className="mr-2" /> Change Password

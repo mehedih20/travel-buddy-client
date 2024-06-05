@@ -6,7 +6,7 @@ import {
   userRoutes,
 } from "@/constants/routesData";
 import { logoutUser } from "@/services/actions/logoutUser";
-import { getUserInfo, removeUser } from "@/services/auth.services";
+import { getUserInfo } from "@/services/auth.services";
 import { userPayload } from "@/types";
 import Image from "next/image";
 import Link from "next/link";

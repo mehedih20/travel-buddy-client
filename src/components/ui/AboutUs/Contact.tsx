@@ -12,7 +12,7 @@ import { FaLocationDot, FaXTwitter } from "react-icons/fa6";
 
 const Contact = () => {
   return (
-    <div className="py-20 lg:py-[100px] bg-gray-200 px-4">
+    <div className="py-20 lg:py-[100px] bg-violet-200 px-4">
       <div className="max-w-[1200px] mx-auto overflow-hidden grid lg:grid-cols-2 gap-10 rounded-lg">
         <div className="px-10 pb-10 flex justify-center">
           <div className="relative">

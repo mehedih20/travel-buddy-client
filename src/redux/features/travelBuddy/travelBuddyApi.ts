@@ -1,7 +1,7 @@
 import { baseApi } from "@/redux/api/baseApi";
 import { TUpdateBuddyRequest } from "@/types";
 
-const tripsApi = baseApi.injectEndpoints({
+const travelBuddyApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     sendTravelBuddyRequest: builder.mutation({
       query: (data) => ({
@@ -16,11 +16,19 @@ const tripsApi = baseApi.injectEndpoints({
         method: "GET",
       }),
     }),
+    getAllBuddyRequest: builder.query({
+      query: () => ({
+        url: "/buddy-request",
+        method: "GET",
+      }),
+      providesTags: ["buddies"],
+    }),
     getUserAllBuddyRequest: builder.query({
       query: () => ({
         url: "/user/buddy-request",
         method: "GET",
       }),
+      providesTags: ["buddies"],
     }),
     checkBuddyRequest: builder.query({
       query: (tripId) => ({
@@ -37,6 +45,7 @@ const tripsApi = baseApi.injectEndpoints({
           body: remainingData,
         };
       },
+      invalidatesTags: ["buddies"],
     }),
   }),
 });
@@ -47,4 +56,5 @@ export const {
   useCheckBuddyRequestQuery,
   useUpdateBuddyRequestMutation,
   useGetSingleTripTravelBuddiesQuery,
-} = tripsApi;
+  useGetAllBuddyRequestQuery,
+} = travelBuddyApi;

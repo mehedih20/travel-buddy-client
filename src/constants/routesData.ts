@@ -5,7 +5,7 @@ export const userRoutes = [
   },
   {
     name: "My Profile",
-    route: "/dashboard/profile",
+    route: "/dashboard/user/profile",
   },
   {
     name: "Travel Posts",
@@ -17,7 +17,7 @@ export const userRoutes = [
   },
   {
     name: "Change Password",
-    route: "/dashboard/change-password",
+    route: "/dashboard/user/change-password",
   },
 ];
 
@@ -35,8 +35,8 @@ export const adminRoutes = [
     route: "/dashboard/admin/manage-users",
   },
   {
-    name: "Change Password",
-    route: "/dashboard/change-password",
+    name: "Approve Request",
+    route: "/dashboard/admin/approve-request",
   },
 ];
 

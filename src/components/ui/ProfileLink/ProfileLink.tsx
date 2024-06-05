@@ -17,7 +17,7 @@ const ProfileLink = ({ closeSideBar }: TProps) => {
             <Link
               onClick={closeSideBar}
               className="hover:bg-purple-200 py-1 px-2 duration-500 ease-in-out"
-              href="/dashboard/profile"
+              href="/dashboard/user/profile"
             >
               Profile
             </Link>

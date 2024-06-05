@@ -16,7 +16,7 @@ const ManageUsersPage = () => {
           <Spinner />
         </div>
       )}
-      <div className="xl:container grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+      <div className="xl:container grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 pb-16">
         {!isFetching &&
           usersData?.data &&
           usersData?.data?.map((user: any) => (

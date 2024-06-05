@@ -49,8 +49,8 @@ const SearchForm = () => {
   };
 
   return (
-    <div className="bg-[url('/bg-image-2.webp')] bg-cover bg-top">
-      <div className="bg-violet-300/90 pt-[80px] pb-[120px] px-4">
+    <div>
+      <div className="bg-violet-200 pt-[80px] pb-[120px] px-4">
         <div className="xl:container">
           <div className="text-center">
             <h2 className="text-4xl inline-block text-gray-700 font-montserrat mb-14 pb-2  uppercase">
