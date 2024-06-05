@@ -49,11 +49,11 @@ const SearchForm = () => {
   };
 
   return (
-    <>
-      <div className=" bg-violet-300 pt-[80px] pb-[100px] px-4">
+    <div className="bg-[url('/bg-image-2.webp')] bg-cover bg-top">
+      <div className="bg-violet-300/90 pt-[80px] pb-[120px] px-4">
         <div className="xl:container">
           <div className="text-center">
-            <h2 className="text-3xl inline-block text-gray-500 font-montserrat mb-10 pb-2  uppercase">
+            <h2 className="text-4xl inline-block text-gray-700 font-montserrat mb-14 pb-2  uppercase">
               Explore the World with Us
             </h2>
           </div>
@@ -74,7 +74,7 @@ const SearchForm = () => {
         handleCloseSideScreen={handleCloseSideScreen}
         isFetching={isFetching}
       />
-    </>
+    </div>
   );
 };
 

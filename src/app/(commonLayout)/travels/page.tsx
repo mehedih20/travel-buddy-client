@@ -11,7 +11,10 @@ import TravelsForm from "@/components/ui/Forms/TravelsForm/TravelsForm";
 
 const Travels = () => {
   const [queryObj, setQueryObj] = useState({});
-  const { data: travelsData, isFetching } = useGetTripsQuery(queryObj);
+  const { data: travelsData, isFetching } = useGetTripsQuery({
+    ...queryObj,
+    limit: 12,
+  });
   const { register, handleSubmit, reset } = useForm<TTravelsFormInput>();
 
   const pages = Math.ceil(travelsData?.meta?.total / travelsData?.meta?.limit);
