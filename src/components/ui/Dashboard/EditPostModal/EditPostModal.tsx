@@ -3,10 +3,10 @@ import {
   useUpdateTripMutation,
 } from "@/redux/features/trips/tripsApi";
 import { SubmitHandler, useForm } from "react-hook-form";
-import Spinner from "../Spinner/Spinner";
 import { useEffect } from "react";
 import { toast } from "sonner";
 import { FaX } from "react-icons/fa6";
+import Spinner from "../../Spinner/Spinner";
 
 interface IFormInput {
   destination: string;

@@ -11,6 +11,7 @@ import { loginUser } from "@/services/actions/loginUser";
 import { useRouter } from "next/navigation";
 import { useAppDispatch } from "@/redux/hooks";
 import { baseApi } from "@/redux/api/baseApi";
+import { useCheckUserEmailUsernameMutation } from "@/redux/features/user/userApi";
 
 interface IFormInput {
   name: string;
@@ -26,6 +27,7 @@ interface IFormInput {
 
 const RegisterPage = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [checkEmailUsername] = useCheckUserEmailUsernameMutation();
   const router = useRouter();
   const dispatch = useAppDispatch();
   const {
@@ -39,8 +41,33 @@ const RegisterPage = () => {
     if (data.profile?.age) {
       data.profile.age = Number(data.profile.age);
     }
+
+    const checkCredentialsObj = {
+      email: data.email,
+      username: data.username,
+    };
+
     try {
       setIsLoading(true);
+      const isCredentialsExists = await checkEmailUsername(
+        checkCredentialsObj
+      ).unwrap();
+      if (isCredentialsExists?.data) {
+        const { data } = isCredentialsExists;
+        if (data.email && data.username) {
+          toast.error("Email & Username already exists");
+          return;
+        }
+        if (data.email && !data.username) {
+          toast.error("Email already exists");
+          return;
+        }
+        if (!data.email && data.username) {
+          toast.error("Username already exists");
+          return;
+        }
+      }
+
       const userInfo = await registerUser(data);
 
       if (userInfo.success) {

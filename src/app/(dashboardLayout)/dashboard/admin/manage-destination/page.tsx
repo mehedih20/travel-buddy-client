@@ -34,7 +34,7 @@ const ManageDestinationPage = () => {
         {isFetching ? (
           <PlainLoading />
         ) : (
-          <div className="grid md:grid-cols-2 xl:grid-cols-3 xl:container gap-10 px-2">
+          <div className="grid md:grid-cols-2 xl:grid-cols-3 xl:container gap-10 px-2 pb-16">
             {destination &&
               destination.data.map((item: any, index: number) => (
                 <DestinationManageCard destination={item} key={index} />

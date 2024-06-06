@@ -1,7 +1,7 @@
 import { useUpdateBuddyRequestMutation } from "@/redux/features/travelBuddy/travelBuddyApi";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
-import Spinner from "../Spinner/Spinner";
+import Spinner from "../../Spinner/Spinner";
 
 type TApproveFormat = {
   status: string;
@@ -42,13 +42,13 @@ const ApproveRequestCard = ({ item }: { item: any }) => {
       <p className="mb-2">
         Email:
         <span className="ml-2 font-semibold text-cyan-950">
-          {item?.userEmail}
+          {item?.user?.email}
         </span>
       </p>
       <p className="mb-2">
         Destination:
         <span className="ml-2 font-semibold text-cyan-950">
-          {item.tripDestination}
+          {item?.trip?.destination}
         </span>
       </p>
       <p className="mb-5">
@@ -69,7 +69,7 @@ const ApproveRequestCard = ({ item }: { item: any }) => {
       >
         <select
           {...register("status")}
-          className="select select-bordered w-full max-w-xs"
+          className="bg-white border-purple-400 select select-bordered w-full max-w-xs"
         >
           <option value="">Select action</option>
           <option value="APPROVED">Approve</option>

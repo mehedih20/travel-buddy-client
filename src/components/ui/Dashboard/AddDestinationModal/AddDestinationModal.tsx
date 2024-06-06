@@ -21,6 +21,7 @@ const AddDestinationModal = ({ isModalOpen, handleModalClose }: TProps) => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<TAddDestinationInput>();
 
@@ -31,6 +32,7 @@ const AddDestinationModal = ({ isModalOpen, handleModalClose }: TProps) => {
       const result = await createDestination(finalObj).unwrap();
       if (result.success) {
         toast.success(result.message);
+        reset();
       }
     } catch (error) {
       toast.error("Something went wrong");
@@ -62,7 +64,7 @@ const AddDestinationModal = ({ isModalOpen, handleModalClose }: TProps) => {
           <label className="font-semibold text-sm text-gray-600">Name</label>
           <input
             type="text"
-            className="mt-2 input input-bordered border-violet-300 w-full"
+            className="mt-2 input input-bordered bg-white border-violet-300 w-full"
             placeholder="Name"
             {...register("name", { required: "Name is required" })}
           />
@@ -78,7 +80,7 @@ const AddDestinationModal = ({ isModalOpen, handleModalClose }: TProps) => {
           </label>
           <input
             type="text"
-            className="mt-2 input input-bordered border-violet-300  w-full"
+            className="mt-2 input input-bordered bg-white border-violet-300  w-full"
             placeholder="Image Url"
             {...register("imageUrl", { required: "Image Url is required" })}
           />
@@ -92,9 +94,8 @@ const AddDestinationModal = ({ isModalOpen, handleModalClose }: TProps) => {
           <label className="font-semibold text-sm text-gray-600">
             Description
           </label>
-          <input
-            type="text"
-            className="mt-2 input input-bordered border-violet-300 w-full"
+          <textarea
+            className="mt-2 textarea textarea-bordered bg-white border-violet-300 w-full"
             placeholder="Description"
             {...register("description", {
               required: "Description is required",
@@ -110,7 +111,7 @@ const AddDestinationModal = ({ isModalOpen, handleModalClose }: TProps) => {
           <label className="font-semibold text-sm text-gray-600">Rating</label>
           <input
             type="number"
-            className="mt-2 input input-bordered border-violet-300 w-full"
+            className="mt-2 input input-bordered bg-white border-violet-300 w-full"
             placeholder="Rating"
             {...register("rating", { required: "Rating is required" })}
           />

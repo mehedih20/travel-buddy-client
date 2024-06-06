@@ -60,6 +60,20 @@ const userApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["users"],
     }),
+    checkUserEmailUsername: builder.mutation({
+      query: (data) => ({
+        url: "/check-email-username",
+        method: "POST",
+        body: data,
+      }),
+    }),
+    checkUserStatus: builder.mutation({
+      query: (data) => ({
+        url: "/check-status",
+        method: "POST",
+        body: data,
+      }),
+    }),
   }),
 });
 
@@ -72,4 +86,6 @@ export const {
   useCheckUserPasswordMutation,
   useChangeUserRoleMutation,
   useChangeUserStatusMutation,
+  useCheckUserEmailUsernameMutation,
+  useCheckUserStatusMutation,
 } = userApi;

@@ -1,8 +1,16 @@
+"use client";
 import Image from "next/image";
 import img1 from "@/assets/Homepage/hero-vector.png";
 import Link from "next/link";
+import { getUserInfo } from "@/services/auth.services";
+import { userPayload } from "@/types";
 
 const Hero = () => {
+  const userInfo = getUserInfo() as userPayload;
+
+  const notRegularUser =
+    userInfo?.role === "admin" || userInfo?.role === "super-admin";
+
   return (
     <div className="overflow-hidden bg-[url('/bg-image.jpg')] bg-cover bg-center">
       <div className="hero bg-purple-950 opacity-80 pt-[50px] pb-[100px] lg:pt-[100px]">
@@ -24,7 +32,9 @@ const Hero = () => {
             </p>
             <Link
               href="/trip-post"
-              className="btn mt-5 bg-orange-600 shadow-lg border-none text-white hover:text-black animate-pulsate px-10 text-lg font-macondo"
+              className={`${
+                notRegularUser && "hidden"
+              } btn mt-5 bg-orange-600 shadow-lg border-none text-white hover:text-black animate-pulsate px-10 text-lg font-macondo`}
             >
               Share Your Trip
             </Link>

@@ -13,6 +13,7 @@ type ProfileFormProps = {
   data: any;
   handleCancel: () => void;
   isLoading: boolean;
+  checkCredentialsLoading: boolean;
 };
 
 const ProfileUpdateForm = ({
@@ -22,6 +23,7 @@ const ProfileUpdateForm = ({
   data,
   handleCancel,
   isLoading,
+  checkCredentialsLoading,
 }: ProfileFormProps) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="w-full md:w-fit">
@@ -84,7 +86,7 @@ const ProfileUpdateForm = ({
           type="submit"
           className="flex items-center mt-5 py-2 w-[200px] justify-center rounded-full bg-violet-800 text-white text-sm hover:bg-blue-900 duration-300 ease-in-out"
         >
-          {isLoading && <Spinner />} Submit
+          {(isLoading || checkCredentialsLoading) && <Spinner />} Submit
         </button>
         <button
           onClick={handleCancel}

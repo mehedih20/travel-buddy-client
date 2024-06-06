@@ -52,6 +52,9 @@ const ProfileDrawer = ({ children }: { children: React.ReactNode }) => {
         <div className="flex flex-col flex-1 bg-purple-900/80 mx-5 mt-3 rounded-md py-5">
           {userInfo &&
             roleBasedRoutes.map((item, index) => {
+              if (item.route === "/trip-post") {
+                return;
+              }
               return (
                 <Link
                   className={`${

@@ -59,11 +59,11 @@ const TripPost = () => {
         route="Trip Post"
         description={postTripDescription}
       />
-      <div className=" bg-purple-800">
+      <div className=" bg-violet-300">
         <div className="xl:container min-h-screen p-5 py-10">
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className=" max-w-[1000px] mx-auto rounded-lg p-5 bg-slate-50 shadow-cyan-500/50 shadow-2xl mb-[100px]"
+            className=" max-w-[1000px] mx-auto rounded-lg p-5 bg-slate-50 shadow-2xl mb-[100px]"
           >
             <label className="form-control w-full mb-5">
               <div className="label">

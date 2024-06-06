@@ -6,9 +6,10 @@ import {
   FaInstagram,
   FaLinkedin,
   FaPhoneAlt,
+  FaTwitter,
 } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
-import { FaLocationDot, FaXTwitter } from "react-icons/fa6";
+import { FaLocationDot } from "react-icons/fa6";
 
 const Contact = () => {
   return (
@@ -78,9 +79,9 @@ const Contact = () => {
             </a>
             <a
               href=""
-              className="text-amber-900 p-2 rounded-full bg-white text-3xl hover:bg-gray-300 transition-all duration-300 ease-in-out"
+              className="text-blue-800 p-2 rounded-full bg-white text-3xl hover:bg-gray-300 transition-all duration-300 ease-in-out"
             >
-              <FaXTwitter />
+              <FaTwitter />
             </a>
           </div>
         </div>

@@ -86,30 +86,34 @@ const TravelTips = () => {
 
   return (
     <div className="bg-violet-300">
-      <div className="max-w-[1400px] mx-auto py-[120px] px-4">
+      <div className="max-w-[1400px] mx-auto py-[140px] px-4">
         <div className="grid lg:grid-cols-2 rounded-lg overflow-hidden shadow-2xl">
-          <div className=" bg-white p-10 flex flex-col items-center">
-            <h2 className="font-bold text-violet-950 text-3xl text-center mb-5">
-              Essential Travel Hacks for Every Explorer
-            </h2>
-            <p className=" text-justify font-medium text-gray-600">
-              Discover a treasure trove of expert advice and insider secrets
-              designed to make your adventures smooth, safe, and unforgettable.
-              Our comprehensive Travel Tips and Guides section covers everything
-              from efficient packing strategies and savvy booking tips to
-              essential safety advice and cultural insights. Whether you&apos;re
-              a seasoned traveler or embarking on your first journey, our tips
-              will help you navigate any destination with confidence and ease.
-              Dive in to learn how to manage your travel budget, stay healthy on
-              the road, and immerse yourself in local cultures for a truly
-              enriching travel experience. Make the most of your trip with our
-              practical guides and become a travel pro today!
-            </p>
-            <p className="flex items-center mt-10 font-semibold text-gray-700 py-2 px-5 bg-violet-300 uppercase rounded-md">
-              Only for you <FaArrowRight className="ml-2 -mt-1 animate-pulse" />
-            </p>
+          <div className="bg-[url('/bg-image-2.webp')] bg-cover bg-bottom">
+            <div className="bg-violet-200/80 p-5 md:p-10 flex flex-col items-center h-full">
+              <h2 className="font-semibold text-gray-800 text-3xl text-center mb-8">
+                Essential Travel Hacks for Every Explorer
+              </h2>
+              <p className=" text-justify font-medium text-gray-800">
+                Discover a treasure trove of expert advice and insider secrets
+                designed to make your adventures smooth, safe, and
+                unforgettable. Our comprehensive Travel Tips and Guides section
+                covers everything from efficient packing strategies and savvy
+                booking tips to essential safety advice and cultural insights.
+                Whether you&apos;re a seasoned traveler or embarking on your
+                first journey, our tips will help you navigate any destination
+                with confidence and ease. Dive in to learn how to manage your
+                travel budget, stay healthy on the road, and immerse yourself in
+                local cultures for a truly enriching travel experience. Make the
+                most of your trip with our practical guides and become a travel
+                pro today!
+              </p>
+              <p className="flex items-center mt-10 text-sm font-semibold text-gray-700 py-2 px-5 bg-purple-200 shadow-xl uppercase rounded-md">
+                Only for you{" "}
+                <FaArrowRight className="ml-2 -mt-1 animate-pulse" />
+              </p>
+            </div>
           </div>
-          <div className=" bg-gradient-to-bl from-violet-600 to-violet-400 min-h-[500px] py-10 relative overflow-hidden">
+          <div className=" bg-gradient-to-bl from-violet-600 to-violet-400 min-h-[550px] py-10 relative overflow-hidden">
             {travelTipsData.map((item, index) => {
               let position = "translate-x-[100%] opacity-0";
 

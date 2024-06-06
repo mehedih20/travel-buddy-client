@@ -1,7 +1,7 @@
 "use client";
 import TravelsForm from "@/components/ui/Forms/TravelsForm/TravelsForm";
 import PlainLoading from "@/components/ui/Loading/PlainLoading";
-import ManageSingleTravel from "@/components/ui/ManageSingleTravel/ManageSingleTravel";
+import ManageSingleTravel from "@/components/ui/Dashboard/ManageSingleTravel/ManageSingleTravel";
 import { useGetTripsQuery } from "@/redux/features/trips/tripsApi";
 import { TTravelsFormInput } from "@/types";
 import { useState } from "react";

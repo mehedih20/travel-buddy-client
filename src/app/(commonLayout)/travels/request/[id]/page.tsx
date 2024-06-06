@@ -16,8 +16,8 @@ import {
 } from "@/redux/features/travelBuddy/travelBuddyApi";
 
 type TFormInput = {
-  userEmail: string;
-  tripDestination: string;
+  userId: string;
+  tripId: string;
 };
 
 type TParams = {
@@ -41,13 +41,8 @@ const TravelRequestPage = ({ params }: TParams) => {
   const { register, handleSubmit } = useForm<TFormInput>();
 
   const onSubmit: SubmitHandler<TFormInput> = async (data) => {
-    const travelRequestData = {
-      ...data,
-      userId: userInfo?.id,
-      tripId: params?.id,
-    };
     try {
-      const result = await sendTravelBuddyRequest(travelRequestData).unwrap();
+      const result = await sendTravelBuddyRequest(data).unwrap();
 
       if (result?.success) {
         toast.success(result?.message);
@@ -92,6 +87,12 @@ const TravelRequestPage = ({ params }: TParams) => {
                     {userInfo && (
                       <div>
                         <div className="mb-3 grid grid-cols-4">
+                          <p>User ID : </p>
+                          <p className="col-span-3 -mt-1 text-gray-600 font-semibold py-1 px-3 rounded-xl max-w-fit">
+                            {userInfo?.id}
+                          </p>
+                        </div>
+                        <div className="mb-3 grid grid-cols-4">
                           <p>Name : </p>
                           <p className="col-span-3 -mt-1 text-gray-600 font-semibold py-1 px-3 rounded-xl max-w-fit">
                             {userInfo?.name}
@@ -119,6 +120,12 @@ const TravelRequestPage = ({ params }: TParams) => {
                     </h2>
                     {travelDetails?.data && (
                       <div>
+                        <div className="mb-3 grid grid-cols-4">
+                          <p>Trip ID : </p>
+                          <p className="col-span-3 -mt-1 text-gray-600 font-semibold py-1 px-3 rounded-xl max-w-fit">
+                            {travelDetails?.data?.id}
+                          </p>
+                        </div>
                         <div className="mb-3 grid grid-cols-4">
                           <p>Destination : </p>
                           <p className="col-span-3 -mt-1 text-gray-600 font-semibold py-1 px-3 rounded-xl max-w-fit">
@@ -151,23 +158,23 @@ const TravelRequestPage = ({ params }: TParams) => {
                   </h2>
                   <label className="form-control w-full mb-5">
                     <div className="label">
-                      <span className="label-text">User Email</span>
+                      <span className="label-text">User ID</span>
                     </div>
                     <input
-                      value={userInfo?.email}
+                      value={userInfo?.id}
                       type="text"
-                      {...register("userEmail")}
+                      {...register("userId")}
                       className="input w-full text-sm bg-slate-200"
                     />
                   </label>
                   <label className="form-control w-full mb-10">
                     <div className="label">
-                      <span className="label-text">Travel Destination</span>
+                      <span className="label-text">Trip ID</span>
                     </div>
                     <input
-                      value={travelDetails?.data?.destination}
+                      value={travelDetails?.data?.id}
                       type="text"
-                      {...register("tripDestination")}
+                      {...register("tripId")}
                       className="input w-full text-sm bg-slate-200"
                     />
                   </label>

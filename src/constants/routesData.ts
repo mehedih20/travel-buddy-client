@@ -1,11 +1,24 @@
-export const userRoutes = [
+const dashboardAndProfileRoute = [
   {
     name: "Dashboard",
     route: "/dashboard",
   },
   {
     name: "My Profile",
-    route: "/dashboard/user/profile",
+    route: "/dashboard/profile",
+  },
+];
+
+const changePasswordRoute = {
+  name: "Change Password",
+  route: "/dashboard/change-password",
+};
+
+export const userRoutes = [
+  ...dashboardAndProfileRoute,
+  {
+    name: "Trip Post",
+    route: "/trip-post",
   },
   {
     name: "Travel Posts",
@@ -15,17 +28,12 @@ export const userRoutes = [
     name: "Travel Requests",
     route: "/dashboard/user/travel-requests",
   },
-  {
-    name: "Change Password",
-    route: "/dashboard/user/change-password",
-  },
+
+  changePasswordRoute,
 ];
 
 export const adminRoutes = [
-  {
-    name: "Dashboard",
-    route: "/dashboard",
-  },
+  ...dashboardAndProfileRoute,
   {
     name: "Manage Trips",
     route: "/dashboard/admin/manage-trips",
@@ -39,18 +47,17 @@ export const adminRoutes = [
     route: "/dashboard/admin/approve-request",
   },
   {
-    name: "Mange Destination",
+    name: "Manage Destination",
     route: "/dashboard/admin/manage-destination",
   },
+  changePasswordRoute,
 ];
 
 export const superAdminRoutes = [
-  {
-    name: "Dashboard",
-    route: "/dashboard",
-  },
+  ...dashboardAndProfileRoute,
   {
     name: "Manage Admin",
-    route: "dashboard/super-admin/manage-admin",
+    route: "/dashboard/super-admin/manage-admin",
   },
+  changePasswordRoute,
 ];

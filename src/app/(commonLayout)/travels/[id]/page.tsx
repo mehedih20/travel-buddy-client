@@ -6,6 +6,8 @@ import Image from "next/image";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Link from "next/link";
 import Loading from "@/components/ui/Loading/Loading";
+import { getUserInfo } from "@/services/auth.services";
+import { userPayload } from "@/types";
 
 type TParams = {
   params: {
@@ -16,6 +18,10 @@ type TParams = {
 const TravelDetailsPage = ({ params }: TParams) => {
   const [value, setValue] = useState(0);
   const { data: travelDetails, isFetching } = useGetSingleTripQuery(params.id);
+  const userInfo = getUserInfo() as userPayload;
+
+  const notRegularUser =
+    userInfo?.role === "admin" || userInfo?.role === "super-admin";
 
   const totalImages = travelDetails?.data?.imageLinks?.length;
 
@@ -56,7 +62,7 @@ const TravelDetailsPage = ({ params }: TParams) => {
             description={travelDetails?.data?.description}
             route={`travels/${travelDetails?.data?.id}`}
           />
-          <div className="xl:container px-4 grid grid-cols-1 lg:grid-cols-2 gap-10 pt-[80px] pb-[120px]">
+          <div className="xl:container px-4 grid grid-cols-1 lg:grid-cols-2 gap-10 pt-[80px] pb-[150px]">
             <div>
               <div className="h-[300px] md:h-[400px] relative overflow-hidden rounded-lg">
                 {travelDetails?.data?.imageLinks.map(
@@ -159,7 +165,11 @@ const TravelDetailsPage = ({ params }: TParams) => {
                 </p>
               </div>
               <Link href={`request/${travelDetails?.data?.id}`}>
-                <button className=" bg-yellow-400 text-gray-700 w-[300px] py-3 rounded-md mt-10 hover:bg-teal-900 hover:text-white transition-all duration-300 ease-in-out">
+                <button
+                  className={`${
+                    notRegularUser && "hidden"
+                  } bg-yellow-400 text-gray-700 w-[300px] py-3 rounded-md mt-10 hover:bg-teal-900 hover:text-white transition-all duration-300 ease-in-out`}
+                >
                   Make travel request
                 </button>
               </Link>

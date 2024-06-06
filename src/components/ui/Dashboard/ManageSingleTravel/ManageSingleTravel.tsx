@@ -2,11 +2,11 @@
 import Image from "next/image";
 import { FaArrowRight } from "react-icons/fa";
 import { toast } from "sonner";
-import Spinner from "../Spinner/Spinner";
+import Spinner from "../../Spinner/Spinner";
 import { useDeleteTripMutation } from "@/redux/features/trips/tripsApi";
 import { useGetSingleTripTravelBuddiesQuery } from "@/redux/features/travelBuddy/travelBuddyApi";
-import EditPostModal from "../EditPostModal/EditPostModal";
 import { useRef, useState } from "react";
+import EditPostModal from "../EditPostModal/EditPostModal";
 
 type TProps = {
   item: any;

@@ -5,7 +5,7 @@ import aboutImg2 from "@/assets/About/about-2.webp";
 const OurMission = () => {
   return (
     <div className="bg-slate-100">
-      <div className="max-w-[1200px] mx-auto grid md:grid-cols-2 gap-10 py-[100px] px-2">
+      <div className="max-w-[1200px] mx-auto grid md:grid-cols-2 gap-10 py-[100px] px-4">
         <div className="px-10 pb-10 flex">
           <div className="relative h-fit">
             <div className="bg-teal-200 rounded-md w-full p-2 h-fit shadow-2xl">

@@ -1,5 +1,5 @@
 "use client";
-import SingleUserCard from "@/components/ui/SingleUserCard/SingleUserCard";
+import SingleUserCard from "@/components/ui/Dashboard/SingleUserCard/SingleUserCard";
 import Spinner from "@/components/ui/Spinner/Spinner";
 import { useGetUsersQuery } from "@/redux/features/user/userApi";
 

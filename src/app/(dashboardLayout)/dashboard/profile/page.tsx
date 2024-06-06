@@ -3,6 +3,7 @@ import PhotoUpdateForm from "@/components/ui/Forms/PhotoUpdateForm/PhotoUpdateFo
 import ProfileUpdateForm from "@/components/ui/Forms/ProfileUpdateForm/ProfileUpdateForm";
 import Spinner from "@/components/ui/Spinner/Spinner";
 import {
+  useCheckUserEmailUsernameMutation,
   useGetUserProfileQuery,
   useUpdateUserProfileMutation,
 } from "@/redux/features/user/userApi";
@@ -17,11 +18,13 @@ import { toast } from "sonner";
 const ProfilePage = () => {
   const [isProfileEditing, setIsProfileEditing] = useState(false);
   const [isPhotoEditing, setIsPhotoEditing] = useState(false);
-  const { register: profileRegister, handleSubmit: handleProfileSubmit } =
-    useForm<TUserUpdateFormInput>();
-
   const { data: userData, isFetching } = useGetUserProfileQuery({});
   const [updateUserProfile, { isLoading }] = useUpdateUserProfileMutation();
+  const [checkEmailUsername, { isLoading: checkCredentialsLoading }] =
+    useCheckUserEmailUsernameMutation();
+
+  const { register: profileRegister, handleSubmit: handleProfileSubmit } =
+    useForm<TUserUpdateFormInput>();
 
   const onProfileSubmit: SubmitHandler<TUserUpdateFormInput> = async (data) => {
     const profile = {
@@ -30,16 +33,39 @@ const ProfilePage = () => {
     };
     const updatedData = { ...data, profile };
 
+    const checkCredentialsObj = {
+      email: data.email,
+      username: data.username,
+    };
+
     try {
+      const isCredentialsExists = await checkEmailUsername(
+        checkCredentialsObj
+      ).unwrap();
+      if (isCredentialsExists?.data) {
+        const { data } = isCredentialsExists;
+        if (data.email && data.username) {
+          toast.error("Email & Username already exists");
+          return;
+        }
+        if (data.email && !data.username) {
+          toast.error("Email already exists");
+          return;
+        }
+        if (!data.email && data.username) {
+          toast.error("Username already exists");
+          return;
+        }
+      }
+
       const result = await updateUserProfile(updatedData).unwrap();
       if (result.success) {
         toast.success(result.message);
+        setIsProfileEditing(false);
       }
     } catch (err) {
       toast.error("Something went wrong");
       console.log(err);
-    } finally {
-      setIsProfileEditing(false);
     }
   };
 
@@ -54,7 +80,7 @@ const ProfilePage = () => {
           <Spinner />
         </div>
       ) : (
-        <div className="flex flex-col items-center xl:ml-20 xl:items-start xl:flex-row gap-20">
+        <div className="flex flex-col items-center xl:ml-20 xl:items-start xl:flex-row gap-20 pb-16">
           <div className="flex flex-col items-center">
             {userData?.data?.photoUrl ? (
               <div className=" overflow-hidden w-[200px] h-[200px] rounded-full border-4 border-violet-700 shadow-2xl">
@@ -146,7 +172,7 @@ const ProfilePage = () => {
                   </button>
                 )}
                 <Link
-                  href="/dashboard/user/change-password"
+                  href="/dashboard/change-password"
                   className="flex items-center mt-5 py-2 w-[200px] justify-center rounded-full bg-purple-800 text-white text-sm hover:bg-blue-900 duration-300 ease-in-out"
                 >
                   <FaKey className="mr-2" /> Change Password
@@ -156,6 +182,7 @@ const ProfilePage = () => {
           ) : (
             <ProfileUpdateForm
               isLoading={isLoading}
+              checkCredentialsLoading={checkCredentialsLoading}
               register={profileRegister}
               handleSubmit={handleProfileSubmit}
               onSubmit={onProfileSubmit}

@@ -1,5 +1,5 @@
 "use client";
-import ApproveRequestCard from "@/components/ui/ApproveRequestCard/ApproveRequestCard";
+import ApproveRequestCard from "@/components/ui/Dashboard/ApproveRequestCard/ApproveRequestCard";
 import PlainLoading from "@/components/ui/Loading/PlainLoading";
 import { useGetAllBuddyRequestQuery } from "@/redux/features/travelBuddy/travelBuddyApi";
 

@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import Spinner from "@/components/ui/Spinner/Spinner";
 import { useAppDispatch } from "@/redux/hooks";
 import { baseApi } from "@/redux/api/baseApi";
+import { useCheckUserStatusMutation } from "@/redux/features/user/userApi";
 
 interface IFormInput {
   email: string;
@@ -25,6 +26,7 @@ interface ILoginResponse {
 
 const LoginPage = () => {
   const [loading, setLoading] = useState(false);
+  const [checkUserStatus] = useCheckUserStatusMutation();
   const { register, handleSubmit } = useForm<IFormInput>();
   const dispatch = useAppDispatch();
   const router = useRouter();
@@ -33,6 +35,15 @@ const LoginPage = () => {
     setLoading(true);
     let userInfo: ILoginResponse;
     try {
+      const isUserActive = await checkUserStatus({
+        userEmail: data.email,
+      }).unwrap();
+      if (isUserActive?.data !== "active") {
+        toast.error("Your account is deactivated!");
+        setLoading(false);
+        return;
+      }
+
       userInfo = await loginUser(data);
       setLoading(false);
 
