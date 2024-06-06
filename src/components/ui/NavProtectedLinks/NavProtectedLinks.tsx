@@ -13,6 +13,15 @@ const ProfileLink = ({ closeSideBar }: TProps) => {
     <>
       {userInfo && (
         <>
+          {userInfo?.role === "user" && (
+            <Link
+              onClick={closeSideBar}
+              className="hover:bg-purple-200 py-1 px-2 duration-500 ease-in-out"
+              href="/trip-post"
+            >
+              Trip Post
+            </Link>
+          )}
           <Link
             onClick={closeSideBar}
             className="hover:bg-purple-200 py-1 px-2 duration-500 ease-in-out"

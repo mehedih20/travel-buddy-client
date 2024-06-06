@@ -16,7 +16,7 @@ const Navbar = () => {
     }
   );
   const ProfileLink = dynamic(
-    () => import("@/components/ui/ProfileLink/ProfileLink"),
+    () => import("@/components/ui/NavProtectedLinks/NavProtectedLinks"),
     {
       ssr: false,
     }

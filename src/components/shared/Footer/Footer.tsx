@@ -10,6 +10,7 @@ import {
 } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
 import { FaLocationDot, FaXTwitter } from "react-icons/fa6";
+import Link from "next/link";
 
 const Footer = () => {
   return (
@@ -54,25 +55,29 @@ const Footer = () => {
         </p>
         <div className="flex gap-3">
           <a
-            href=""
+            href="https://web.facebook.com/profile.php?id=100004101130146"
+            target="_blank"
             className="text-blue-600 p-1 rounded-full bg-white border border-gray-400 text-2xl hover:bg-gray-300 transition-all duration-300 ease-in-out"
           >
             <FaFacebook />
           </a>
           <a
-            href=""
+            href="https://www.instagram.com/mehedi606"
+            target="_blank"
             className="text-orange-600 p-1 rounded-full bg-white border border-gray-400 text-2xl hover:bg-gray-300 transition-all duration-300 ease-in-out"
           >
             <FaInstagram />
           </a>
           <a
-            href=""
+            href="https://www.linkedin.com/in/mehedi-hasan-5322a920b/"
+            target="_blank"
             className="text-blue-400 p-1 rounded-full bg-white border border-gray-400 text-2xl hover:bg-gray-300 transition-all duration-300 ease-in-out"
           >
             <FaLinkedin />
           </a>
           <a
-            href=""
+            href="https://www.linkedin.com/in/mehedi-hasan-5322a920b/"
+            target="_blank"
             className="text-blue-800 p-1 rounded-full bg-white border border-gray-400 text-2xl hover:bg-gray-300 transition-all duration-300 ease-in-out"
           >
             <FaTwitter />
@@ -89,9 +94,12 @@ const Footer = () => {
         <a className="text-gray-600 font-medium mb-2 hover:underline cursor-pointer">
           Privacy Policy
         </a>
-        <a className="text-gray-600 font-medium mb-2 hover:underline cursor-pointer">
+        <Link
+          href="/aboutUs"
+          className="text-gray-600 font-medium mb-2 hover:underline cursor-pointer"
+        >
           About Us
-        </a>
+        </Link>
         <a className="text-gray-600 font-medium mb-2 hover:underline cursor-pointer">
           FAQ
         </a>

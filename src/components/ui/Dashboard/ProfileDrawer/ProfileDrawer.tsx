@@ -120,15 +120,18 @@ const ProfileDrawer = ({ children }: { children: React.ReactNode }) => {
         </div>
         <div className="flex flex-col flex-1 bg-purple-900/80 mx-5 mt-3 rounded-md py-5">
           {userInfo &&
-            roleBasedRoutes.map((route, index) => {
+            roleBasedRoutes.map((item, index) => {
+              if (item.route === "/trip-post") {
+                return;
+              }
               return (
                 <Link
                   className="bg-violet-950 py-3 mx-2 mb-3 rounded-lg text-center text-base text-white font-montserrat font-semibold"
-                  href={route.route}
+                  href={item.route}
                   key={index}
                   onClick={handleCloseSideDrawer}
                 >
-                  {route.name}
+                  {item.name}
                 </Link>
               );
             })}

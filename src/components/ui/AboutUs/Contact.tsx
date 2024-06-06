@@ -60,25 +60,29 @@ const Contact = () => {
           </p>
           <div className="pt-5 flex gap-3">
             <a
-              href=""
+              href="https://web.facebook.com/profile.php?id=100004101130146"
+              target="_blank"
               className="text-blue-600 p-2 rounded-full bg-white text-3xl hover:bg-gray-300 transition-all duration-300 ease-in-out"
             >
               <FaFacebook />
             </a>
             <a
-              href=""
+              href="https://www.instagram.com/mehedi606"
+              target="_blank"
               className="text-orange-600 p-2 rounded-full bg-white text-3xl hover:bg-gray-300 transition-all duration-300 ease-in-out"
             >
               <FaInstagram />
             </a>
             <a
-              href=""
+              href="https://www.linkedin.com/in/mehedi-hasan-5322a920b/"
+              target="_blank"
               className="text-blue-400 p-2 rounded-full bg-white text-3xl hover:bg-gray-300 transition-all duration-300 ease-in-out"
             >
               <FaLinkedin />
             </a>
             <a
-              href=""
+              href="https://www.linkedin.com/in/mehedi-hasan-5322a920b/"
+              target="_blank"
               className="text-blue-800 p-2 rounded-full bg-white text-3xl hover:bg-gray-300 transition-all duration-300 ease-in-out"
             >
               <FaTwitter />

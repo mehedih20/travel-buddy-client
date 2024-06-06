@@ -199,7 +199,7 @@ const TravelRequestPage = ({ params }: TParams) => {
                   )}
                   {checkRequestData?.result ? (
                     <h2 className="py-3 rounded-lg text-white font-bold bg-red-400 text-center">
-                      Request already made
+                      Request sent
                     </h2>
                   ) : (
                     <button

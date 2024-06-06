@@ -3,7 +3,7 @@ import PhotoUpdateForm from "@/components/ui/Forms/PhotoUpdateForm/PhotoUpdateFo
 import ProfileUpdateForm from "@/components/ui/Forms/ProfileUpdateForm/ProfileUpdateForm";
 import Spinner from "@/components/ui/Spinner/Spinner";
 import {
-  useCheckUserEmailUsernameMutation,
+  useCheckProfileUpdateCredentialsMutation,
   useGetUserProfileQuery,
   useUpdateUserProfileMutation,
 } from "@/redux/features/user/userApi";
@@ -20,8 +20,10 @@ const ProfilePage = () => {
   const [isPhotoEditing, setIsPhotoEditing] = useState(false);
   const { data: userData, isFetching } = useGetUserProfileQuery({});
   const [updateUserProfile, { isLoading }] = useUpdateUserProfileMutation();
-  const [checkEmailUsername, { isLoading: checkCredentialsLoading }] =
-    useCheckUserEmailUsernameMutation();
+  const [
+    checkProfileUpdateCredentials,
+    { isLoading: checkCredentialsLoading },
+  ] = useCheckProfileUpdateCredentialsMutation();
 
   const { register: profileRegister, handleSubmit: handleProfileSubmit } =
     useForm<TUserUpdateFormInput>();
@@ -39,7 +41,7 @@ const ProfilePage = () => {
     };
 
     try {
-      const isCredentialsExists = await checkEmailUsername(
+      const isCredentialsExists = await checkProfileUpdateCredentials(
         checkCredentialsObj
       ).unwrap();
       if (isCredentialsExists?.data) {
@@ -87,8 +89,9 @@ const ProfilePage = () => {
                 <Image
                   src={userData?.data?.photoUrl}
                   alt={userData?.data?.name}
-                  width={200}
-                  height={200}
+                  width={400}
+                  height={300}
+                  className=" h-full"
                 />
               </div>
             ) : (

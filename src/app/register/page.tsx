@@ -11,7 +11,7 @@ import { loginUser } from "@/services/actions/loginUser";
 import { useRouter } from "next/navigation";
 import { useAppDispatch } from "@/redux/hooks";
 import { baseApi } from "@/redux/api/baseApi";
-import { useCheckUserEmailUsernameMutation } from "@/redux/features/user/userApi";
+import { useCheckRegistrationCredentialsMutation } from "@/redux/features/user/userApi";
 
 interface IFormInput {
   name: string;
@@ -27,7 +27,8 @@ interface IFormInput {
 
 const RegisterPage = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [checkEmailUsername] = useCheckUserEmailUsernameMutation();
+  const [checkRegistrationCredentials] =
+    useCheckRegistrationCredentialsMutation();
   const router = useRouter();
   const dispatch = useAppDispatch();
   const {
@@ -49,7 +50,7 @@ const RegisterPage = () => {
 
     try {
       setIsLoading(true);
-      const isCredentialsExists = await checkEmailUsername(
+      const isCredentialsExists = await checkRegistrationCredentials(
         checkCredentialsObj
       ).unwrap();
       if (isCredentialsExists?.data) {
