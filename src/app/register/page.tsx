@@ -19,10 +19,6 @@ interface IFormInput {
   username: string;
   password: string;
   confirmPassword: string;
-  profile?: {
-    bio?: string;
-    age?: number;
-  };
 }
 
 const RegisterPage = () => {
@@ -39,10 +35,6 @@ const RegisterPage = () => {
   } = useForm<IFormInput>();
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
-    if (data.profile?.age) {
-      data.profile.age = Number(data.profile.age);
-    }
-
     const checkCredentialsObj = {
       email: data.email,
       username: data.username,
@@ -198,18 +190,6 @@ const RegisterPage = () => {
                 )}
               </div>
 
-              <input
-                type="text"
-                className="bg-transparent border-b-2 mb-8 w-[270px] md:w-[300px] place-content-center border-b-gray-300 font-montserrat placeholder-gray-500 outline-none"
-                {...register("profile.age")}
-                placeholder="Age"
-              />
-              <input
-                type="text"
-                className="bg-transparent border-b-2 mb-8 w-[270px] md:w-[300px] place-content-center border-b-gray-300 font-montserrat placeholder-gray-500 outline-none"
-                {...register("profile.bio")}
-                placeholder="Bio"
-              />
               <button
                 className="bg-purple-800 hover:bg-violet-950 py-3 w-[270px] md:w-[300px] rounded-3xl text-gray-200 tracking-wide outline-none transition-all duration-700 ease-in-out flex justify-center items-center"
                 type="submit"
