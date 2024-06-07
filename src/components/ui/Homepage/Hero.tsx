@@ -1,15 +1,15 @@
 "use client";
 import Image from "next/image";
 import img1 from "@/assets/Homepage/hero-vector.png";
-import Link from "next/link";
-import { getUserInfo } from "@/services/auth.services";
-import { userPayload } from "@/types";
+import dynamic from "next/dynamic";
 
 const Hero = () => {
-  const userInfo = getUserInfo() as userPayload;
-
-  const notRegularUser =
-    userInfo?.role === "admin" || userInfo?.role === "super-admin";
+  const HeroButton = dynamic(
+    () => import("@/components/ui/HeroButton/HeroButton"),
+    {
+      ssr: false,
+    }
+  );
 
   return (
     <div className="overflow-hidden bg-[url('/bg-image.jpg')] bg-cover bg-center">
@@ -30,14 +30,7 @@ const Hero = () => {
               smart, travel together, and experience the world in a whole new
               way!
             </p>
-            <Link
-              href="/trip-post"
-              className={`${
-                notRegularUser && "hidden"
-              } btn mt-5 bg-orange-600 shadow-lg border-none text-white hover:text-black animate-pulsate px-10 text-lg font-macondo`}
-            >
-              Share Your Trip
-            </Link>
+            <HeroButton />
           </div>
         </div>
       </div>

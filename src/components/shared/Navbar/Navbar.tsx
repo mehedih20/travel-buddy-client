@@ -7,6 +7,22 @@ import dynamic from "next/dynamic";
 import { IoMenu } from "react-icons/io5";
 import { FaX } from "react-icons/fa6";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
+
+const commonLinks = [
+  {
+    name: "Home",
+    path: "/",
+  },
+  {
+    name: "About Us",
+    path: "/aboutUs",
+  },
+  {
+    name: "Travels",
+    path: "/travels",
+  },
+];
 
 const Navbar = () => {
   const AuthButton = dynamic(
@@ -22,6 +38,7 @@ const Navbar = () => {
     }
   );
   const [sideBarOpen, setSideBarOpen] = useState(false);
+  const pathname = usePathname();
 
   const openSidebar = () => {
     setSideBarOpen(true);
@@ -67,27 +84,17 @@ const Navbar = () => {
           </div>
         </div>
         <div className="hidden lg:flex gap-4 font-medium list-none text-gray-700">
-          <Link
-            className="hover:bg-purple-200 py-1 px-2 duration-500 ease-in-out"
-            href="/"
-          >
-            Home
-          </Link>
-
-          <Link
-            className="hover:bg-purple-200 py-1 px-2 duration-500 ease-in-out"
-            href="/aboutUs"
-          >
-            About Us
-          </Link>
-
-          <Link
-            className="hover:bg-purple-200 py-1 px-2 duration-500 ease-in-out"
-            href="/travels"
-          >
-            Travels
-          </Link>
-
+          {commonLinks.map((item, index) => {
+            return (
+              <Link
+                key={index}
+                href={item.path}
+                className="hover:bg-purple-200 py-1 px-2 duration-500 ease-in-out"
+              >
+                {item.name}
+              </Link>
+            );
+          })}
           <ProfileLink />
         </div>
         <AuthButton />
@@ -112,17 +119,13 @@ const Navbar = () => {
           </button>
         </div>
         <div className="flex flex-col items-center gap-8 font-medium list-none text-lg text-gray-200 py-10">
-          <Link onClick={closeSidebar} href="/">
-            Home
-          </Link>
-
-          <Link onClick={closeSidebar} href="/aboutUs">
-            About Us
-          </Link>
-
-          <Link onClick={closeSidebar} href="/travels">
-            Travels
-          </Link>
+          {commonLinks.map((item, index) => {
+            return (
+              <Link key={index} href={item.path} onClick={closeSidebar}>
+                {item.name}
+              </Link>
+            );
+          })}
 
           <ProfileLink closeSideBar={closeSidebar} />
         </div>

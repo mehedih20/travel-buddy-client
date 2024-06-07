@@ -1,9 +1,8 @@
 "use client";
 import { logoutUser } from "@/services/actions/logoutUser";
-import { getUserInfo, removeUser } from "@/services/auth.services";
+import { getUserInfo } from "@/services/auth.services";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React from "react";
 
 const AuthButton = () => {
   const userInfo = getUserInfo();

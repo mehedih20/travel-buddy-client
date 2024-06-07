@@ -1,6 +1,7 @@
 import { getUserInfo } from "@/services/auth.services";
 import { userPayload } from "@/types";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 type TProps = {
   closeSideBar?: () => void;

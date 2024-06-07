@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import React from "react";
 import { FaArrowLeft, FaHome } from "react-icons/fa";
@@ -14,15 +15,15 @@ const BackButton = () => {
   return (
     <>
       {pathname !== "/" && (
-        <button
-          onClick={() => router.push("/")}
+        <Link
+          href="/"
           className={`fixed ${
             homeConditions ? "bottom-10" : "bottom-20 md:bottom-28"
           } right-5 border-2 border-gray-500 md:right-10 text-white bg-violet-950 p-5 z-30 shadow-xl hover:bg-teal-800 rounded-full transition-all duration-300 ease-in-out`}
         >
           {" "}
           <FaHome />
-        </button>
+        </Link>
       )}
       {!backRestrictedPaths.includes(pathname) && (
         <button
