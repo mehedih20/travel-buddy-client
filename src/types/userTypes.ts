@@ -13,7 +13,7 @@ export type TUserUpdateFormInput = {
   email: string;
   username: string;
   profile: {
-    age: number;
+    age: string;
     bio: string;
   };
 };

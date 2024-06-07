@@ -29,8 +29,12 @@ const ProfilePage = () => {
     useForm<TUserUpdateFormInput>();
 
   const onProfileSubmit: SubmitHandler<TUserUpdateFormInput> = async (data) => {
+    if (data?.profile?.age === "" || data?.profile?.bio === "") {
+      toast.error("Please fill up all profile info!");
+      return;
+    }
     const profile = {
-      age: data?.profile?.age ? Number(data?.profile?.age) : null,
+      age: data?.profile?.age && Number(data?.profile?.age),
       bio: data?.profile?.bio,
     };
     const updatedData = { ...data, profile };
