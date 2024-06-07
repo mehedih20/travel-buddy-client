@@ -43,7 +43,7 @@ const ProfileUpdateForm = ({
           Email
         </p>
         <input
-          type="text"
+          type="email"
           className="bg-slate-200 border-2 border-violet-600 p-3 w-full sm:w-[500px] rounded-md overflow-hidden"
           defaultValue={data?.email}
           {...register("email")}

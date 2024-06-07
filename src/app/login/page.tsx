@@ -82,7 +82,7 @@ const LoginPage = () => {
               className="flex flex-col p-10 bg-slate-100"
             >
               <input
-                type="text"
+                type="email"
                 className="bg-transparent border-x-0 border-t-0 border-b-2 mb-8 w-[270px] md:w-[300px] place-content-center text-black border-b-blue-300 font-montserrat placeholder-gray-500 outline-none"
                 {...register("email")}
                 placeholder="Email"
