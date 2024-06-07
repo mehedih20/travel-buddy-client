@@ -1,6 +1,5 @@
 import ImageContainer from "../ImageContainer/ImageContainer";
 import { whyUsData } from "@/constants/whyUsData";
-import bgImg from "@/assets/Homepage/travelling-1.jpg";
 
 const WhyUs = () => {
   return (
