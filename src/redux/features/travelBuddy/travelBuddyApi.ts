@@ -9,12 +9,14 @@ const travelBuddyApi = baseApi.injectEndpoints({
         method: "POST",
         body: data,
       }),
+      invalidatesTags: ["buddies"],
     }),
     getSingleTripTravelBuddies: builder.query({
       query: (tripId) => ({
         url: `travel-buddies/${tripId}`,
         method: "GET",
       }),
+      providesTags: ["buddies"],
     }),
     getAllBuddyRequest: builder.query({
       query: () => ({

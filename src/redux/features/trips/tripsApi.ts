@@ -34,6 +34,7 @@ const tripsApi = baseApi.injectEndpoints({
         url: `/trips/${id}`,
         method: "GET",
       }),
+      providesTags: ["trips"],
     }),
     getSingleUserTrips: builder.query({
       query: () => ({
