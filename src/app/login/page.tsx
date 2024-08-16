@@ -74,12 +74,24 @@ const LoginPage = () => {
             Welcome back
           </h2>
           <div className="py-[80px]">
-            <h2 className="text-center font-montserrat text-3xl mt-5 text-gray-700">
+            <h2 className="text-center font-montserrat text-3xl mt-5 mb-7 text-gray-700">
               Travel Buddy Login
             </h2>
+            <div className="mx-10 px-3 py-3 mb-7 bg-purple-200 rounded-lg">
+              <div className="mb-3 text-sm">
+                <h4 className="font-semibold">Test User</h4>
+                <p>email: mehedihasan@gmail.com</p>
+                <p>pass: userpassword</p>
+              </div>
+              <div className="text-sm">
+                <h4 className="font-semibold">Test Admin</h4>
+                <p>email: juliamary@gmail.com</p>
+                <p>pass: adminpassword</p>
+              </div>
+            </div>
             <form
               onSubmit={handleSubmit(onSubmit)}
-              className="flex flex-col p-10 bg-slate-100"
+              className="flex flex-col px-10 pb-10 bg-slate-100"
             >
               <input
                 type="email"
